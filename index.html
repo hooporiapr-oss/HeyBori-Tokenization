@@ -141,6 +141,31 @@
 
     .pro-badge::before { content: "★"; font-size: 0.8rem; }
 
+    .export-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(240, 183, 74, 0.1);
+      border: 1px solid rgba(240, 183, 74, 0.35);
+      color: var(--gold-warm);
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-color var(--transition), background var(--transition);
+    }
+
+    .export-btn:hover {
+      border-color: rgba(240, 183, 74, 0.6);
+      background: rgba(240, 183, 74, 0.18);
+    }
+
+    .export-icon {
+      font-size: 0.9rem;
+      color: var(--gold);
+    }
+
     .new-chat-btn {
       display: inline-flex;
       align-items: center;
@@ -541,6 +566,8 @@
       .brand-sub { font-size: 0.6rem; letter-spacing: 0.14em; }
       .upgrade-btn { padding: 6px 10px; font-size: 0.72rem; }
       .pro-badge { padding: 4px 8px; font-size: 0.68rem; }
+      .export-btn { padding: 6px 10px; font-size: 0.72rem; }
+      .export-text { display: none; }
       .new-chat-btn { padding: 6px 10px; font-size: 0.75rem; }
       .new-chat-text { display: none; }
       .lang-toggle { padding: 3px 5px; gap: 4px; }
@@ -593,6 +620,11 @@
           <span data-lang="en">Pro</span>
           <span data-lang="es">Pro</span>
         </span>
+        <button class="export-btn" id="exportBtn" type="button" style="display:none" aria-label="Download conversation as PDF">
+          <span class="export-icon">⬇</span>
+          <span class="export-text" data-lang="en">PDF</span>
+          <span class="export-text" data-lang="es">PDF</span>
+        </button>
         <button class="new-chat-btn" id="newChat" type="button" aria-label="Start a new conversation">
           <span class="new-chat-icon">＋</span>
           <span class="new-chat-text" data-lang="en">New</span>
@@ -639,8 +671,8 @@
           <span data-lang="es">Mensajes ilimitados todos los días</span>
         </li>
         <li>
-          <span data-lang="en">Priority access</span>
-          <span data-lang="es">Acceso prioritario</span>
+          <span data-lang="en">Download any conversation as PDF</span>
+          <span data-lang="es">Descarga cualquier conversación como PDF</span>
         </li>
         <li>
           <span data-lang="en">Support independent basketball education</span>
@@ -660,6 +692,7 @@
     </div>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="/chat.js" defer></script>
 </body>
 </html>
