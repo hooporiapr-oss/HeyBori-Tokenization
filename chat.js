@@ -1,11 +1,12 @@
-// chat.js — Hey Bori chat frontend
-// Clean rebuild. Persists conversation across visits.
+// chat.js — Hoops.Money chat frontend
+// Persists conversation across visits via localStorage.
 
 (function () {
   'use strict';
 
   const ENDPOINT = '/api/chat';
-  const STORAGE_KEY = 'heyBoriConversation';
+  const STORAGE_KEY = 'hoopsMoneyConversation';
+  const LANG_KEY = 'hoopsMoneyLang';
 
   const messagesEl = document.getElementById('messages');
   const inputEl    = document.getElementById('input');
@@ -15,28 +16,30 @@
   const newChatBtn = document.getElementById('newChat');
 
   if (!messagesEl || !inputEl || !sendBtn) {
-    console.error('[Hey Bori] Required markup missing — aborting.');
+    console.error('[Hoops.Money] Required markup missing.');
     return;
   }
 
   const I18N = {
     en: {
-      placeholder: 'Ask Bori anything about tokenization…',
-      error: 'Something went wrong reaching Bori. Please try again.',
-      networkError: "I couldn't reach Bori. Check your connection.",
+      placeholder: 'Ask about NIL, contracts, money, agents, taxes…',
+      error: 'Something went wrong. Please try again.',
+      networkError: "I couldn't reach the server. Check your connection.",
       clearConfirm: 'Start a new conversation? Your current chat will be cleared.',
       welcomeEyebrow: 'Educational · Independent · Neutral',
-      welcomeTitle: 'Ask me anything about tokenization.',
-      welcomeSub: "I explain concepts, mechanics, regulation, and risks across tokenized real estate, art, funds, securities, and real-world assets. I don't sell anything. I don't recommend deals. I teach so you can make informed decisions."
+      welcomeTitle: 'The business of basketball — explained clearly.',
+      welcomeSub: "Ask anything about NIL, financial literacy, contracts, agents, taxes, endorsements, and post-career planning. Straight answers. No hype. No selling. No sugar-coating bad deals. Built to help players, families, and coaches navigate the money side of the game.",
+      topics: ['NIL Deals', 'Financial Literacy', 'Contracts', 'Agents', 'Taxes', 'Post-Career']
     },
     es: {
-      placeholder: 'Pregúntale a Bori sobre tokenización…',
-      error: 'Algo salió mal al conectar con Bori. Intenta de nuevo.',
-      networkError: 'No pude conectar con Bori. Revisa tu conexión.',
+      placeholder: 'Pregunta sobre NIL, contratos, dinero, agentes, impuestos…',
+      error: 'Algo salió mal. Intenta de nuevo.',
+      networkError: 'No pude conectar con el servidor. Revisa tu conexión.',
       clearConfirm: '¿Comenzar una nueva conversación? Tu chat actual será borrado.',
       welcomeEyebrow: 'Educativo · Independiente · Neutral',
-      welcomeTitle: 'Pregúntame lo que quieras sobre tokenización.',
-      welcomeSub: 'Explico conceptos, mecánica, regulación y riesgos a través de bienes raíces tokenizados, arte, fondos, valores y activos del mundo real. No vendo nada. No recomiendo ofertas. Enseño para que puedas tomar decisiones informadas.'
+      welcomeTitle: 'El negocio del baloncesto — explicado con claridad.',
+      welcomeSub: 'Pregunta lo que quieras sobre NIL, educación financiera, contratos, agentes, impuestos, patrocinios y planificación post-carrera. Respuestas directas. Sin hype. Sin venderte nada. Sin endulzar malos acuerdos. Construido para ayudar a jugadores, familias y entrenadores a navegar el lado financiero del juego.',
+      topics: ['Acuerdos NIL', 'Educación Financiera', 'Contratos', 'Agentes', 'Impuestos', 'Post-Carrera']
     }
   };
 
@@ -46,14 +49,14 @@
 
   function currentLang() {
     try {
-      return localStorage.getItem('heyBoriLang') === 'es' ? 'es' : 'en';
+      return localStorage.getItem(LANG_KEY) === 'es' ? 'es' : 'en';
     } catch {
       return 'en';
     }
   }
 
   function setLang(lang) {
-    try { localStorage.setItem('heyBoriLang', lang); } catch {}
+    try { localStorage.setItem(LANG_KEY, lang); } catch {}
 
     document.querySelectorAll('[data-lang]').forEach(el => {
       el.classList.toggle('show', el.dataset.lang === lang);
@@ -103,15 +106,28 @@
 
     const title = document.createElement('h1');
     title.className = 'welcome-title';
-    title.textContent = t.welcomeTitle;
+    title.innerHTML = t.welcomeTitle.replace(
+      /basketball|baloncesto/i,
+      match => `<span class="accent">${match}</span>`
+    );
 
     const sub = document.createElement('p');
     sub.className = 'welcome-sub';
     sub.textContent = t.welcomeSub;
 
+    const topics = document.createElement('div');
+    topics.className = 'welcome-topics';
+    t.topics.forEach(topic => {
+      const chip = document.createElement('span');
+      chip.className = 'topic-chip';
+      chip.textContent = topic;
+      topics.appendChild(chip);
+    });
+
     wrap.appendChild(eyebrow);
     wrap.appendChild(title);
     wrap.appendChild(sub);
+    wrap.appendChild(topics);
     messagesEl.appendChild(wrap);
   }
 
@@ -170,7 +186,6 @@
       renderWelcome();
       return;
     }
-
     history = saved;
     conversationStarted = true;
     messagesEl.innerHTML = '';
@@ -230,7 +245,7 @@
       if (typing) typing.remove();
       addMessage('assistant', reply);
     } catch (err) {
-      console.error('[Hey Bori] send failed:', err);
+      console.error('[Hoops.Money] send failed:', err);
       if (typing) typing.remove();
       const t = I18N[currentLang()];
       const msg = /fetch|network|failed to fetch/i.test(err.message || '') ? t.networkError : t.error;
@@ -246,9 +261,7 @@
     inputEl.style.height = Math.min(inputEl.scrollHeight, 160) + 'px';
   }
 
-  // Event listeners
   inputEl.addEventListener('input', autoResize);
-
   inputEl.addEventListener('keydown', function (e) {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -262,7 +275,6 @@
   if (langEsBtn) langEsBtn.addEventListener('click', () => setLang('es'));
   if (newChatBtn) newChatBtn.addEventListener('click', clearConversation);
 
-  // Init
   function init() {
     setLang(currentLang());
     restoreConversation();
