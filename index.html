@@ -41,402 +41,87 @@ body{
 }
 a{text-decoration:none;color:inherit}
 
-/* NAV */
-.nav{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  z-index:50;
-  padding:16px 7% 12px;
-  background:rgba(7,7,11,.72);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-.nav-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.nav-logo{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:900;
-  letter-spacing:2px;
-  font-size:22px;
-  color:var(--white);
-  text-transform:uppercase;
-}
+.nav{position:fixed;top:0;left:0;width:100%;z-index:50;padding:16px 7% 12px;background:rgba(7,7,11,.72);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);}
+.nav-top{display:flex;justify-content:space-between;align-items:center;}
+.nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;letter-spacing:2px;font-size:22px;color:var(--white);text-transform:uppercase;}
 .nav-logo span{color:var(--gold)}
-.nav-links{
-  display:flex;
-  gap:26px;
-  font-size:14px;
-  text-transform:uppercase;
-  letter-spacing:1px;
-  color:var(--muted);
-}
+.nav-links{display:flex;gap:26px;font-size:14px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);}
 .nav-links a:hover{color:var(--gold)}
-.language-toggle{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:10px;
-  margin-top:12px;
-  color:var(--gold);
-  font-size:14px;
-  letter-spacing:1px;
-  text-transform:uppercase;
-}
-.lang-btn{
-  background:transparent;
-  border:none;
-  color:var(--muted);
-  font-family:'Barlow',sans-serif;
-  font-weight:800;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  cursor:pointer;
-  padding:4px 6px;
-}
-.lang-btn.active,
-.lang-btn:hover{color:var(--gold)}
+.nav-links a.highlight{color:var(--green)}
+.nav-links a.highlight:hover{color:var(--gold)}
+.language-toggle{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:12px;color:var(--gold);font-size:14px;letter-spacing:1px;text-transform:uppercase;}
+.lang-btn{background:transparent;border:none;color:var(--muted);font-family:'Barlow',sans-serif;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;padding:4px 6px;}
+.lang-btn.active,.lang-btn:hover{color:var(--gold)}
 
-/* HERO */
-.hero{
-  position:relative;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:140px 7% 80px;
-  text-align:center;
-  overflow:hidden;
-  background:
-    linear-gradient(180deg, rgba(7,7,11,.55), rgba(7,7,11,.85)),
-    url('ready.png') center/cover no-repeat,
-    linear-gradient(180deg,#09090e,#07070b);
-}
-.hero:before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-  background-size:42px 42px;
-  opacity:.25;
-  pointer-events:none;
-}
-.hero-content{
-  position:relative;
-  z-index:2;
-  max-width:1050px;
-}
-.eyebrow{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  padding:10px 18px;
-  border:1px solid rgba(232,185,74,.35);
-  color:var(--gold);
-  border-radius:999px;
-  text-transform:uppercase;
-  letter-spacing:2px;
-  font-size:13px;
-  font-weight:700;
-  margin-bottom:28px;
-  background:rgba(232,185,74,.08);
-}
-.dot{
-  width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px var(--gold);
-}
-.hero h1{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:clamp(54px,11vw,128px);
-  line-height:.88;
-  font-weight:900;
-  text-transform:uppercase;
-  margin-bottom:22px;
-  text-shadow:0 4px 40px rgba(0,0,0,.6);
-}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:140px 7% 80px;text-align:center;overflow:hidden;background:linear-gradient(180deg, rgba(7,7,11,.55), rgba(7,7,11,.85)),url('ready.png') center/cover no-repeat,linear-gradient(180deg,#09090e,#07070b);}
+.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);background-size:42px 42px;opacity:.25;pointer-events:none;}
+.hero-content{position:relative;z-index:2;max-width:1050px;}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;border:1px solid rgba(232,185,74,.35);color:var(--gold);border-radius:999px;text-transform:uppercase;letter-spacing:2px;font-size:13px;font-weight:700;margin-bottom:28px;background:rgba(232,185,74,.08);}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px var(--gold);}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(54px,11vw,128px);line-height:.88;font-weight:900;text-transform:uppercase;margin-bottom:22px;text-shadow:0 4px 40px rgba(0,0,0,.6);}
 .hero h1 span{color:var(--gold)}
-.hero-tagline{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:clamp(28px,4.5vw,54px);
-  font-weight:800;
-  letter-spacing:6px;
-  text-transform:uppercase;
-  color:var(--gold);
-  margin-bottom:26px;
-  text-shadow:0 2px 20px rgba(232,185,74,.4);
-}
-.hero p{
-  color:var(--white);
-  font-size:clamp(18px,2.4vw,24px);
-  max-width:780px;
-  margin:0 auto 38px;
-  line-height:1.48;
-  opacity:.92;
-}
-.buttons{
-  display:flex;
-  justify-content:center;
-  gap:16px;
-  flex-wrap:wrap;
-}
-.btn{
-  padding:16px 28px;
-  border-radius:999px;
-  text-transform:uppercase;
-  font-weight:800;
-  letter-spacing:1px;
-  transition:.25s ease;
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  cursor:pointer;
-  border:none;
-  font-family:'Barlow',sans-serif;
-  font-size:15px;
-}
+.hero-tagline{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,4.5vw,54px);font-weight:800;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:26px;text-shadow:0 2px 20px rgba(232,185,74,.4);}
+.hero p{color:var(--white);font-size:clamp(18px,2.4vw,24px);max-width:780px;margin:0 auto 38px;line-height:1.48;opacity:.92;}
+
+.buttons{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+.btn{padding:16px 28px;border-radius:999px;text-transform:uppercase;font-weight:800;letter-spacing:1px;transition:.25s ease;display:inline-flex;align-items:center;gap:10px;cursor:pointer;border:none;font-family:'Barlow',sans-serif;font-size:15px;text-decoration:none;}
 .btn.gold{background:var(--gold);color:#111}
 .btn.gold:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(232,185,74,.22)}
 .btn.outline{border:1px solid rgba(255,255,255,.26);color:var(--white);background:transparent}
 .btn.outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
 .btn.coming{opacity:.85;cursor:not-allowed}
-.btn.coming:hover{transform:none;box-shadow:none}
-.coming-tag{
-  display:inline-block;
-  font-size:10px;
-  background:rgba(0,0,0,.22);
-  color:inherit;
-  padding:3px 9px;
-  border-radius:8px;
-  letter-spacing:1.5px;
-  font-weight:700;
-}
+.btn.coming:hover{transform:none;box-shadow:none;border-color:rgba(255,255,255,.26);color:var(--white)}
+.coming-tag{display:inline-block;font-size:10px;background:rgba(0,0,0,.22);color:inherit;padding:3px 9px;border-radius:8px;letter-spacing:1.5px;font-weight:700;}
 .btn.outline .coming-tag{background:rgba(232,185,74,.2);color:var(--gold)}
-.light-row{
-  display:flex;
-  justify-content:center;
-  gap:14px;
-  margin-top:50px;
-}
-.light{
-  width:26px;height:26px;border-radius:50%;box-shadow:0 0 22px currentColor;
-}
+.live-tag{display:inline-block;font-size:10px;background:rgba(0,0,0,.18);color:#111;padding:3px 9px;border-radius:8px;letter-spacing:1.5px;font-weight:700;}
+
+.light-row{display:flex;justify-content:center;gap:14px;margin-top:50px;}
+.light{width:26px;height:26px;border-radius:50%;box-shadow:0 0 22px currentColor;}
 .green{color:var(--green);background:var(--green)}
 .blue{color:var(--blue);background:var(--blue)}
 .red{color:var(--red);background:var(--red)}
 .goldlight{color:var(--gold);background:var(--gold)}
 .purple{color:var(--purple);background:var(--purple)}
 
-/* GENERAL */
 section{padding:86px 7%}
 .dark{background:var(--dark)}
-.section-title{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:clamp(42px,7vw,82px);
-  line-height:.92;
-  text-transform:uppercase;
-  font-weight:900;
-  margin-bottom:24px;
-}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(42px,7vw,82px);line-height:.92;text-transform:uppercase;font-weight:900;margin-bottom:24px;}
 .section-title span{color:var(--gold)}
-.section-text{
-  color:var(--muted);
-  font-size:20px;
-  line-height:1.62;
-  max-width:900px;
-}
+.section-text{color:var(--muted);font-size:20px;line-height:1.62;max-width:900px;}
 .center{text-align:center;margin-left:auto;margin-right:auto}
 
-/* INTRO SPLIT */
-.split{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:44px;
-  align-items:center;
-}
-.chat-preview{
-  background:linear-gradient(180deg,#151520,#0f0f17);
-  border:1px solid rgba(232,185,74,.25);
-  border-radius:28px;
-  padding:28px;
-  box-shadow:0 0 70px rgba(232,185,74,.07);
-}
-.chat-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:18px;
-  color:var(--gold);
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:24px;
-  font-weight:800;
-  text-transform:uppercase;
-  letter-spacing:1px;
-}
-.live-pill{
-  font-family:'Barlow',sans-serif;
-  font-size:12px;
-  letter-spacing:1px;
-  border:1px solid rgba(124,255,107,.4);
-  color:var(--green);
-  border-radius:999px;
-  padding:6px 10px;
-  font-weight:700;
-}
-.bubble{
-  background:#222235;
-  border-radius:20px;
-  padding:17px 19px;
-  margin-bottom:14px;
-  color:var(--white);
-  font-size:17px;
-  line-height:1.45;
-}
-.bubble.host{
-  background:rgba(72,198,255,.12);
-  border:1px solid rgba(72,198,255,.22);
-}
-.bubble.bori{
-  background:rgba(232,185,74,.13);
-  border:1px solid rgba(232,185,74,.25);
-  margin-left:28px;
-}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;}
+.chat-preview{background:linear-gradient(180deg,#151520,#0f0f17);border:1px solid rgba(232,185,74,.25);border-radius:28px;padding:28px;box-shadow:0 0 70px rgba(232,185,74,.07);}
+.chat-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:800;text-transform:uppercase;letter-spacing:1px;}
+.live-pill{font-family:'Barlow',sans-serif;font-size:12px;letter-spacing:1px;border:1px solid rgba(124,255,107,.4);color:var(--green);border-radius:999px;padding:6px 10px;font-weight:700;}
+.bubble{background:#222235;border-radius:20px;padding:17px 19px;margin-bottom:14px;color:var(--white);font-size:17px;line-height:1.45;}
+.bubble.host{background:rgba(72,198,255,.12);border:1px solid rgba(72,198,255,.22);}
+.bubble.bori{background:rgba(232,185,74,.13);border:1px solid rgba(232,185,74,.25);margin-left:28px;}
 .bubble strong{color:var(--gold);display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;opacity:.8}
 .bubble.host strong{color:var(--blue)}
-.choice-row{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:18px;
-}
-.choice{
-  padding:11px 14px;
-  border:1px solid rgba(255,255,255,.16);
-  border-radius:999px;
-  color:var(--muted);
-  font-size:14px;
-  background:rgba(255,255,255,.04);
-  font-weight:600;
-}
+.chat-try-link{display:block;margin-top:20px;text-align:center;padding:14px;border:1px dashed rgba(124,255,107,.35);border-radius:16px;color:var(--green);font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:13px;transition:.2s ease;}
+.chat-try-link:hover{background:rgba(124,255,107,.06);border-style:solid}
 
-/* EPISODES */
-.episode-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:22px;
-  margin-top:46px;
-}
-.ep-card{
-  position:relative;
-  background:linear-gradient(180deg,var(--panel),#101018);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:26px;
-  padding:26px;
-  min-height:245px;
-  overflow:hidden;
-  transition:.25s ease;
-}
-.ep-card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(232,185,74,.45);
-  box-shadow:0 20px 45px rgba(0,0,0,.24);
-}
-.ep-card:after{
-  content:"";
-  position:absolute;
-  width:90px;height:90px;
-  border-radius:50%;
-  right:-30px;bottom:-30px;
-  background:rgba(232,185,74,.10);
-  box-shadow:0 0 50px rgba(232,185,74,.1);
-}
-.ep-num{
-  color:var(--gold);
-  font-size:14px;
-  font-weight:900;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  margin-bottom:14px;
-}
-.ep-card h3{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:30px;
-  line-height:1;
-  text-transform:uppercase;
-  margin-bottom:14px;
-}
-.ep-card p{
-  color:var(--muted);
-  font-size:16px;
-  line-height:1.5;
-}
-.ep-question{
-  margin-top:18px;
-  padding-top:15px;
-  border-top:1px solid rgba(255,255,255,.08);
-  color:var(--white) !important;
-  font-weight:600;
-}
+.episode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:46px;}
+.ep-card{position:relative;background:linear-gradient(180deg,var(--panel),#101018);border:1px solid rgba(255,255,255,.08);border-radius:26px;padding:26px;min-height:245px;overflow:hidden;transition:.25s ease;}
+.ep-card:hover{transform:translateY(-6px);border-color:rgba(232,185,74,.45);box-shadow:0 20px 45px rgba(0,0,0,.24);}
+.ep-card:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;right:-30px;bottom:-30px;background:rgba(232,185,74,.10);box-shadow:0 0 50px rgba(232,185,74,.1);}
+.ep-num{color:var(--gold);font-size:14px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;}
+.ep-card h3{font-family:'Barlow Condensed',sans-serif;font-size:30px;line-height:1;text-transform:uppercase;margin-bottom:14px;}
+.ep-card p{color:var(--muted);font-size:16px;line-height:1.5;}
+.ep-question{margin-top:18px;padding-top:15px;border-top:1px solid rgba(255,255,255,.08);color:var(--white) !important;font-weight:600;}
 
-/* LEVELS */
-.level-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:22px;
-  margin-top:42px;
-}
-.level-card{
-  background:linear-gradient(145deg,#181824,#101018);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:28px;
-  padding:30px;
-}
-.level-card h3{
-  font-family:'Barlow Condensed',sans-serif;
-  text-transform:uppercase;
-  color:var(--gold);
-  font-size:34px;
-  margin-bottom:14px;
-}
+.level-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:42px;}
+.level-card{background:linear-gradient(145deg,#181824,#101018);border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:30px;}
+.level-card h3{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;color:var(--gold);font-size:34px;margin-bottom:14px;}
 .level-card p{color:var(--muted);font-size:17px;line-height:1.55}
 
-/* CTA */
-.cta{
-  text-align:center;
-  background:
-    radial-gradient(circle at center, rgba(232,185,74,.15), transparent 45%),
-    #08080d;
-}
-.cta h2{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:clamp(48px,9vw,100px);
-  text-transform:uppercase;
-  line-height:.9;
-  margin-bottom:25px;
-}
+.cta{text-align:center;background:radial-gradient(circle at center, rgba(232,185,74,.15), transparent 45%),#08080d;}
+.cta h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(48px,9vw,100px);text-transform:uppercase;line-height:.9;margin-bottom:25px;}
 .cta h2 span{color:var(--gold)}
-.cta p{
-  color:var(--muted);
-  max-width:760px;
-  font-size:21px;
-  line-height:1.5;
-  margin:0 auto 34px;
-}
+.cta p{color:var(--muted);max-width:760px;font-size:21px;line-height:1.5;margin:0 auto 34px;}
 
-/* FOOTER */
-.footer{
-  padding:36px 7%;
-  text-align:center;
-  color:#858585;
-  font-size:13px;
-  background:#050508;
-  border-top:1px solid rgba(255,255,255,.06);
-  line-height:1.6;
-}
+.footer{padding:36px 7%;text-align:center;color:#858585;font-size:13px;background:#050508;border-top:1px solid rgba(255,255,255,.06);line-height:1.6;}
 
 @media(max-width:900px){
   .nav-top{justify-content:center}
@@ -459,7 +144,7 @@ section{padding:86px 7%}
       <a href="#about" data-en="About" data-es="Acerca">About</a>
       <a href="#levels" data-en="Series" data-es="Serie">Series</a>
       <a href="#episodes" data-en="Episodes" data-es="Episodios">Episodes</a>
-      <a href="#start" data-en="Start" data-es="Comenzar">Start</a>
+      <a href="chat-money.html" class="highlight" data-en="Free Chat →" data-es="Chat Gratis →">Free Chat →</a>
     </div>
   </div>
 
@@ -474,7 +159,7 @@ section{padding:86px 7%}
   <div class="hero-content">
     <div class="eyebrow">
       <span class="dot"></span>
-      <span data-en="Coming Soon" data-es="Próximamente">Coming Soon</span>
+      <span data-en="Launching Soon — Free Chat Live Now" data-es="Próximamente — Chat Gratis Disponible">Launching Soon — Free Chat Live Now</span>
     </div>
 
     <h1 data-en="Get Ready <span>Hoops</span>" data-es="Get Ready <span>Hoops</span>">Get Ready <span>Hoops</span></h1>
@@ -486,12 +171,12 @@ section{padding:86px 7%}
     </p>
 
     <div class="buttons">
-      <button type="button" class="btn gold coming">
-        <span data-en="Start Episode 001" data-es="Empezar Episodio 001">Start Episode 001</span>
-        <span class="coming-tag" data-en="Soon" data-es="Pronto">Soon</span>
-      </button>
+      <a href="chat-money.html" class="btn gold">
+        <span data-en="Try Free Chat" data-es="Prueba El Chat Gratis">Try Free Chat</span>
+        <span class="live-tag" data-en="Live" data-es="En Vivo">Live</span>
+      </a>
       <button type="button" class="btn outline coming">
-        <span data-en="Talk To Bori" data-es="Habla Con Bori">Talk To Bori</span>
+        <span data-en="Start Episode 001" data-es="Empezar Episodio 001">Start Episode 001</span>
         <span class="coming-tag" data-en="Soon" data-es="Pronto">Soon</span>
       </button>
     </div>
@@ -541,11 +226,7 @@ section{padding:86px 7%}
         <span data-en="Simple. Why would someone choose YOU?" data-es="Simple. ¿Por qué alguien te escogería a TI?">Simple. Why would someone choose YOU?</span>
       </div>
 
-      <div class="choice-row">
-        <span class="choice" data-en="I don't know" data-es="No sé">I don't know</span>
-        <span class="choice" data-en="I think I know" data-es="Creo que sé">I think I know</span>
-        <span class="choice" data-en="Help me understand" data-es="Ayúdame a entender">Help me understand</span>
-      </div>
+      <a href="chat-money.html" class="chat-try-link" data-en="→ Talk To Bori Now (Free)" data-es="→ Habla Con Bori Ahora (Gratis)">→ Talk To Bori Now (Free)</a>
     </div>
   </div>
 </section>
@@ -579,75 +260,16 @@ section{padding:86px 7%}
   </p>
 
   <div class="episode-grid">
-    <div class="ep-card">
-      <div class="ep-num" data-en="Episode 001" data-es="Episodio 001">Episode 001</div>
-      <h3 data-en="Basketball Money" data-es="El Dinero Del Baloncesto">Basketball Money</h3>
-      <p data-en="Why players get opportunities — and why talent alone is not enough." data-es="Por qué los jugadores reciben oportunidades — y por qué el talento solo no es suficiente.">Why players get opportunities — and why talent alone is not enough.</p>
-      <p class="ep-question" data-en="Question: Why would someone choose you?" data-es="Pregunta: ¿Por qué alguien te escogería a ti?">Question: Why would someone choose you?</p>
-    </div>
-
-    <div class="ep-card">
-      <div class="ep-num" data-en="Episode 002" data-es="Episodio 002">Episode 002</div>
-      <h3 data-en="Social Media" data-es="Redes Sociales">Social Media</h3>
-      <p data-en="What a player posts becomes part of their reputation before they ever meet anyone." data-es="Lo que un jugador publica se convierte en parte de su reputación antes de conocer a alguien.">What a player posts becomes part of their reputation before they ever meet anyone.</p>
-      <p class="ep-question" data-en="Question: What would your page say about you?" data-es="Pregunta: ¿Qué diría tu página sobre ti?">Question: What would your page say about you?</p>
-    </div>
-
-    <div class="ep-card">
-      <div class="ep-num" data-en="Episode 003" data-es="Episodio 003">Episode 003</div>
-      <h3 data-en="Influence" data-es="Influencia">Influence</h3>
-      <p data-en="The people around a player shape their decisions more than they realize." data-es="Las personas alrededor de un jugador moldean sus decisiones más de lo que piensan.">The people around a player shape their decisions more than they realize.</p>
-      <p class="ep-question" data-en="Question: Who is really influencing you?" data-es="Pregunta: ¿Quién realmente te está influenciando?">Question: Who is really influencing you?</p>
-    </div>
-
-    <div class="ep-card">
-      <div class="ep-num" data-en="Episode 004" data-es="Episodio 004">Episode 004</div>
-      <h3 data-en="Peak Early" data-es="Pico Temprano">Peak Early</h3>
-      <p data-en="Early success can create comfort, and comfort can stop growth." data-es="El éxito temprano puede crear comodidad, y la comodidad puede detener el crecimiento.">Early success can create comfort, and comfort can stop growth.</p>
-      <p class="ep-question" data-en="Question: Are you still improving?" data-es="Pregunta: ¿Sigues mejorando?">Question: Are you still improving?</p>
-    </div>
-
-    <div class="ep-card">
-      <div class="ep-num" data-en="Episode 005" data-es="Episodio 005">Episode 005</div>
-      <h3 data-en="What Coaches Notice" data-es="Lo Que Los Coaches Notan">What Coaches Notice</h3>
-      <p data-en="Coaches don't just watch mistakes. They watch what happens after mistakes." data-es="Los coaches no solo observan los errores. Observan lo que pasa después del error.">Coaches don't just watch mistakes. They watch what happens after mistakes.</p>
-      <p class="ep-question" data-en="Question: What do you show after a mistake?" data-es="Pregunta: ¿Qué muestras después de un error?">Question: What do you show after a mistake?</p>
-    </div>
-
-    <div class="ep-card">
-      <div class="ep-num" data-en="Episode 006" data-es="Episodio 006">Episode 006</div>
-      <h3 data-en="After Opportunity" data-es="Después De La Oportunidad">After Opportunity</h3>
-      <p data-en="Getting a chance is not the same as being ready to keep it." data-es="Recibir una oportunidad no es lo mismo que estar listo para mantenerla.">Getting a chance is not the same as being ready to keep it.</p>
-      <p class="ep-question" data-en="Question: Are you ready or just chasing?" data-es="Pregunta: ¿Estás listo o solo persiguiendo?">Question: Are you ready or just chasing?</p>
-    </div>
-
-    <div class="ep-card">
-      <div class="ep-num" data-en="Episode 007" data-es="Episodio 007">Episode 007</div>
-      <h3 data-en="Comparison" data-es="Comparación">Comparison</h3>
-      <p data-en="Comparison can teach a player — or destroy their confidence." data-es="La comparación puede enseñar al jugador — o destruir su confianza.">Comparison can teach a player — or destroy their confidence.</p>
-      <p class="ep-question" data-en="Question: Are you learning or judging?" data-es="Pregunta: ¿Estás aprendiendo o juzgando?">Question: Are you learning or judging?</p>
-    </div>
-
-    <div class="ep-card">
-      <div class="ep-num" data-en="Episode 008" data-es="Episodio 008">Episode 008</div>
-      <h3 data-en="Identity" data-es="Identidad">Identity</h3>
-      <p data-en="Every player is known for something, whether they choose it or not." data-es="Cada jugador es conocido por algo, lo elija o no.">Every player is known for something, whether they choose it or not.</p>
-      <p class="ep-question" data-en="Question: What are you known for?" data-es="Pregunta: ¿Por qué eres conocido?">Question: What are you known for?</p>
-    </div>
-
-    <div class="ep-card">
-      <div class="ep-num" data-en="Episode 009" data-es="Episodio 009">Episode 009</div>
-      <h3 data-en="Discipline" data-es="Disciplina">Discipline</h3>
-      <p data-en="Who a player becomes in public starts with who they are in private." data-es="Quien el jugador es en público empieza con quien es en privado.">Who a player becomes in public starts with who they are in private.</p>
-      <p class="ep-question" data-en="Question: Who are you when nobody is watching?" data-es="Pregunta: ¿Quién eres cuando nadie te ve?">Question: Who are you when nobody is watching?</p>
-    </div>
-
-    <div class="ep-card">
-      <div class="ep-num" data-en="Episode 010" data-es="Episodio 010">Episode 010</div>
-      <h3 data-en="Busy vs Productive" data-es="Ocupado vs Productivo">Busy vs Productive</h3>
-      <p data-en="Not every workout creates progress. Direction matters." data-es="No todo entrenamiento crea progreso. La dirección importa.">Not every workout creates progress. Direction matters.</p>
-      <p class="ep-question" data-en="Question: Are you busy or improving?" data-es="Pregunta: ¿Estás ocupado o mejorando?">Question: Are you busy or improving?</p>
-    </div>
+    <div class="ep-card"><div class="ep-num" data-en="Episode 001" data-es="Episodio 001">Episode 001</div><h3 data-en="Basketball Money" data-es="El Dinero Del Baloncesto">Basketball Money</h3><p data-en="Why players get opportunities — and why talent alone is not enough." data-es="Por qué los jugadores reciben oportunidades — y por qué el talento solo no es suficiente.">Why players get opportunities — and why talent alone is not enough.</p><p class="ep-question" data-en="Question: Why would someone choose you?" data-es="Pregunta: ¿Por qué alguien te escogería a ti?">Question: Why would someone choose you?</p></div>
+    <div class="ep-card"><div class="ep-num" data-en="Episode 002" data-es="Episodio 002">Episode 002</div><h3 data-en="Social Media" data-es="Redes Sociales">Social Media</h3><p data-en="What a player posts becomes part of their reputation before they ever meet anyone." data-es="Lo que un jugador publica se convierte en parte de su reputación antes de conocer a alguien.">What a player posts becomes part of their reputation before they ever meet anyone.</p><p class="ep-question" data-en="Question: What would your page say about you?" data-es="Pregunta: ¿Qué diría tu página sobre ti?">Question: What would your page say about you?</p></div>
+    <div class="ep-card"><div class="ep-num" data-en="Episode 003" data-es="Episodio 003">Episode 003</div><h3 data-en="Influence" data-es="Influencia">Influence</h3><p data-en="The people around a player shape their decisions more than they realize." data-es="Las personas alrededor de un jugador moldean sus decisiones más de lo que piensan.">The people around a player shape their decisions more than they realize.</p><p class="ep-question" data-en="Question: Who is really influencing you?" data-es="Pregunta: ¿Quién realmente te está influenciando?">Question: Who is really influencing you?</p></div>
+    <div class="ep-card"><div class="ep-num" data-en="Episode 004" data-es="Episodio 004">Episode 004</div><h3 data-en="Peak Early" data-es="Pico Temprano">Peak Early</h3><p data-en="Early success can create comfort, and comfort can stop growth." data-es="El éxito temprano puede crear comodidad, y la comodidad puede detener el crecimiento.">Early success can create comfort, and comfort can stop growth.</p><p class="ep-question" data-en="Question: Are you still improving?" data-es="Pregunta: ¿Sigues mejorando?">Question: Are you still improving?</p></div>
+    <div class="ep-card"><div class="ep-num" data-en="Episode 005" data-es="Episodio 005">Episode 005</div><h3 data-en="What Coaches Notice" data-es="Lo Que Los Coaches Notan">What Coaches Notice</h3><p data-en="Coaches don't just watch mistakes. They watch what happens after mistakes." data-es="Los coaches no solo observan los errores. Observan lo que pasa después del error.">Coaches don't just watch mistakes. They watch what happens after mistakes.</p><p class="ep-question" data-en="Question: What do you show after a mistake?" data-es="Pregunta: ¿Qué muestras después de un error?">Question: What do you show after a mistake?</p></div>
+    <div class="ep-card"><div class="ep-num" data-en="Episode 006" data-es="Episodio 006">Episode 006</div><h3 data-en="After Opportunity" data-es="Después De La Oportunidad">After Opportunity</h3><p data-en="Getting a chance is not the same as being ready to keep it." data-es="Recibir una oportunidad no es lo mismo que estar listo para mantenerla.">Getting a chance is not the same as being ready to keep it.</p><p class="ep-question" data-en="Question: Are you ready or just chasing?" data-es="Pregunta: ¿Estás listo o solo persiguiendo?">Question: Are you ready or just chasing?</p></div>
+    <div class="ep-card"><div class="ep-num" data-en="Episode 007" data-es="Episodio 007">Episode 007</div><h3 data-en="Comparison" data-es="Comparación">Comparison</h3><p data-en="Comparison can teach a player — or destroy their confidence." data-es="La comparación puede enseñar al jugador — o destruir su confianza.">Comparison can teach a player — or destroy their confidence.</p><p class="ep-question" data-en="Question: Are you learning or judging?" data-es="Pregunta: ¿Estás aprendiendo o juzgando?">Question: Are you learning or judging?</p></div>
+    <div class="ep-card"><div class="ep-num" data-en="Episode 008" data-es="Episodio 008">Episode 008</div><h3 data-en="Identity" data-es="Identidad">Identity</h3><p data-en="Every player is known for something, whether they choose it or not." data-es="Cada jugador es conocido por algo, lo elija o no.">Every player is known for something, whether they choose it or not.</p><p class="ep-question" data-en="Question: What are you known for?" data-es="Pregunta: ¿Por qué eres conocido?">Question: What are you known for?</p></div>
+    <div class="ep-card"><div class="ep-num" data-en="Episode 009" data-es="Episodio 009">Episode 009</div><h3 data-en="Discipline" data-es="Disciplina">Discipline</h3><p data-en="Who a player becomes in public starts with who they are in private." data-es="Quien el jugador es en público empieza con quien es en privado.">Who a player becomes in public starts with who they are in private.</p><p class="ep-question" data-en="Question: Who are you when nobody is watching?" data-es="Pregunta: ¿Quién eres cuando nadie te ve?">Question: Who are you when nobody is watching?</p></div>
+    <div class="ep-card"><div class="ep-num" data-en="Episode 010" data-es="Episodio 010">Episode 010</div><h3 data-en="Busy vs Productive" data-es="Ocupado vs Productivo">Busy vs Productive</h3><p data-en="Not every workout creates progress. Direction matters." data-es="No todo entrenamiento crea progreso. La dirección importa.">Not every workout creates progress. Direction matters.</p><p class="ep-question" data-en="Question: Are you busy or improving?" data-es="Pregunta: ¿Estás ocupado o mejorando?">Question: Are you busy or improving?</p></div>
   </div>
 </section>
 
@@ -658,33 +280,24 @@ section{padding:86px 7%}
   </p>
 
   <div class="level-grid">
-    <div class="level-card">
-      <h3 data-en="1. Listen" data-es="1. Escucha">1. Listen</h3>
-      <p data-en="The player hears a short basketball-business conversation that feels real and direct." data-es="El jugador escucha una conversación corta sobre el negocio del baloncesto — real y directa.">The player hears a short basketball-business conversation that feels real and direct.</p>
-    </div>
-    <div class="level-card">
-      <h3 data-en="2. Reflect" data-es="2. Reflexiona">2. Reflect</h3>
-      <p data-en="Each episode ends with one personal question the player cannot ignore." data-es="Cada episodio termina con una pregunta personal que el jugador no puede ignorar.">Each episode ends with one personal question the player cannot ignore.</p>
-    </div>
-    <div class="level-card">
-      <h3 data-en="3. Talk" data-es="3. Habla">3. Talk</h3>
-      <p data-en="The player chooses a response and Bori continues the conversation." data-es="El jugador elige una respuesta y Bori continúa la conversación.">The player chooses a response and Bori continues the conversation.</p>
-    </div>
+    <div class="level-card"><h3 data-en="1. Listen" data-es="1. Escucha">1. Listen</h3><p data-en="The player hears a short basketball-business conversation that feels real and direct." data-es="El jugador escucha una conversación corta sobre el negocio del baloncesto — real y directa.">The player hears a short basketball-business conversation that feels real and direct.</p></div>
+    <div class="level-card"><h3 data-en="2. Reflect" data-es="2. Reflexiona">2. Reflect</h3><p data-en="Each episode ends with one personal question the player cannot ignore." data-es="Cada episodio termina con una pregunta personal que el jugador no puede ignorar.">Each episode ends with one personal question the player cannot ignore.</p></div>
+    <div class="level-card"><h3 data-en="3. Talk" data-es="3. Habla">3. Talk</h3><p data-en="The player chooses a response and Bori continues the conversation." data-es="El jugador elige una respuesta y Bori continúa la conversación.">The player chooses a response and Bori continues the conversation.</p></div>
   </div>
 </section>
 
 <section id="start" class="cta">
   <h2 data-en="Train Your Game.<br><span>Understand Your Value.</span>" data-es="Entrena Tu Juego.<br><span>Entiende Tu Valor.</span>">Train Your Game.<br><span>Understand Your Value.</span></h2>
-  <p data-en="Get Ready Hoops helps young players think beyond the court — and prepare for what's coming before it arrives." data-es="Get Ready Hoops ayuda a los jugadores jóvenes a pensar más allá de la cancha — y a prepararse para lo que viene antes de que llegue.">
-    Get Ready Hoops helps young players think beyond the court — and prepare for what's coming before it arrives.
+  <p data-en="Episode 001 launches soon. In the meantime — talk to Bori for free. No signup needed." data-es="El Episodio 001 se lanza pronto. Mientras tanto — habla con Bori gratis. Sin registro.">
+    Episode 001 launches soon. In the meantime — talk to Bori for free. No signup needed.
   </p>
   <div class="buttons">
-    <button type="button" class="btn gold coming">
-      <span data-en="Start Episode 001" data-es="Empezar Episodio 001">Start Episode 001</span>
-      <span class="coming-tag" data-en="Soon" data-es="Pronto">Soon</span>
-    </button>
+    <a href="chat-money.html" class="btn gold">
+      <span data-en="Try Free Chat" data-es="Prueba El Chat Gratis">Try Free Chat</span>
+      <span class="live-tag" data-en="Live" data-es="En Vivo">Live</span>
+    </a>
     <button type="button" class="btn outline coming">
-      <span data-en="Talk To Bori" data-es="Habla Con Bori">Talk To Bori</span>
+      <span data-en="Start Episode 001" data-es="Empezar Episodio 001">Start Episode 001</span>
       <span class="coming-tag" data-en="Soon" data-es="Pronto">Soon</span>
     </button>
   </div>
