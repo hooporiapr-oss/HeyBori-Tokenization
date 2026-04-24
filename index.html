@@ -3,20 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Hey Bori — The Educator Voice on Tokenization</title>
-  <meta name="description" content="A focused, independent source for understanding tokenization. Concepts, mechanics, regulation, and risks — explained clearly." />
-  <meta name="theme-color" content="#0a0a0d" />
+  <title>Hoops.Money — The Business of Basketball</title>
+  <meta name="description" content="The neutral educational advisor on the business of basketball. NIL, financial literacy, contracts, taxes, agents, and everything money in basketball." />
+  <meta name="theme-color" content="#0a0806" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Hoops.Money — The Business of Basketball" />
+  <meta property="og:description" content="The neutral educational advisor on NIL, financial literacy, and everything money in basketball." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hoops.money" />
+
   <style>
     :root {
-      --bg: #06070a;
-      --bg-2: #0b0d12;
-      --text: #f5f3ee;
-      --muted: #a8adb8;
+      --bg: #0a0806;
+      --bg-2: #13100c;
+      --text: #f6f0e4;
+      --muted: #9e9688;
       --line: rgba(255,255,255,0.08);
-      --accent: #e8b64a;
-      --accent-soft: rgba(232,182,74,0.14);
-      --accent-warm: #f5d890;
-      --ink: #0b0d12;
+      --orange: #ff6a1a;
+      --orange-warm: #ff8a3d;
+      --orange-soft: rgba(255,106,26,0.14);
+      --gold: #f0b74a;
+      --gold-warm: #f5d080;
+      --ink: #0a0806;
       --transition: 260ms ease;
     }
 
@@ -27,9 +36,9 @@
       font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 18% 16%, rgba(232,182,74,0.1), transparent 32%),
-        radial-gradient(circle at 85% 82%, rgba(232,182,74,0.07), transparent 36%),
-        linear-gradient(180deg, #05060a 0%, #0a0c12 50%, #05060a 100%);
+        radial-gradient(circle at 12% 18%, rgba(255,106,26,0.12), transparent 36%),
+        radial-gradient(circle at 88% 82%, rgba(240,183,74,0.09), transparent 40%),
+        linear-gradient(180deg, #07060a 0%, #0a0806 50%, #07060a 100%);
       -webkit-font-smoothing: antialiased;
     }
 
@@ -61,6 +70,7 @@
       position: relative;
     }
 
+    /* HEADER */
     .top {
       display: flex;
       justify-content: space-between;
@@ -76,22 +86,26 @@
     }
 
     .brand-mark {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: 14px;
+      position: relative;
       background:
-        radial-gradient(circle at 30% 25%, rgba(255,255,255,0.3), transparent 55%),
-        linear-gradient(145deg, var(--accent-warm), var(--accent) 60%, #b88c2a);
+        radial-gradient(circle at 30% 25%, rgba(255,255,255,0.35), transparent 55%),
+        linear-gradient(145deg, var(--orange-warm), var(--orange) 55%, #c94610);
       box-shadow:
         inset 0 2px 3px rgba(255,255,255,0.35),
         inset 0 -3px 6px rgba(0,0,0,0.25),
-        0 10px 24px rgba(232,182,74,0.3);
+        0 10px 24px rgba(255,106,26,0.3);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--ink);
-      font-weight: 900;
-      font-size: 18px;
+    }
+
+    .brand-mark svg {
+      width: 26px;
+      height: 26px;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
     }
 
     .brand-text {
@@ -102,13 +116,17 @@
 
     .brand-name {
       font-weight: 800;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       letter-spacing: -0.015em;
     }
 
+    .brand-name .dot {
+      color: var(--gold);
+    }
+
     .brand-sub {
-      font-size: 0.7rem;
-      letter-spacing: 0.16em;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--muted);
       font-weight: 700;
@@ -136,25 +154,22 @@
     }
 
     .new-chat-btn:hover {
-      border-color: rgba(232,182,74,0.4);
-      background: rgba(232,182,74,0.06);
+      border-color: rgba(255,106,26,0.4);
+      background: rgba(255,106,26,0.06);
     }
 
-    .new-chat-btn[disabled] {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
+    .new-chat-btn[disabled] { opacity: 0.4; cursor: not-allowed; }
 
     .new-chat-icon {
       font-size: 1rem;
       font-weight: 800;
-      color: var(--accent);
+      color: var(--orange);
     }
 
     .lang-toggle {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       background: rgba(255,255,255,0.03);
       border: 1px solid var(--line);
       border-radius: 999px;
@@ -174,10 +189,11 @@
     }
 
     .lang-btn.active {
-      background: var(--accent);
-      color: var(--ink);
+      background: var(--orange);
+      color: #fff;
     }
 
+    /* WELCOME */
     .welcome {
       display: flex;
       flex-direction: column;
@@ -191,28 +207,52 @@
       font-size: 0.75rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--orange-warm);
       font-weight: 800;
       margin-bottom: 18px;
     }
 
     .welcome-title {
-      font-size: clamp(1.9rem, 5vw, 3rem);
+      font-size: clamp(2rem, 5.2vw, 3rem);
       line-height: 1.05;
       letter-spacing: -0.035em;
       font-weight: 800;
       margin: 0 0 18px;
-      max-width: 18ch;
+      max-width: 20ch;
+    }
+
+    .welcome-title .accent {
+      color: var(--orange-warm);
     }
 
     .welcome-sub {
       font-size: clamp(0.95rem, 1.5vw, 1.05rem);
       color: var(--muted);
       line-height: 1.7;
-      max-width: 52ch;
-      margin: 0;
+      max-width: 56ch;
+      margin: 0 0 24px;
     }
 
+    .welcome-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      max-width: 560px;
+    }
+
+    .topic-chip {
+      background: rgba(255,106,26,0.08);
+      border: 1px solid rgba(255,106,26,0.2);
+      color: var(--gold-warm);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    /* MESSAGES */
     .messages {
       flex: 1 1 auto;
       overflow-y: auto;
@@ -243,8 +283,8 @@
 
     .msg.user {
       margin-left: auto;
-      background: rgba(232,182,74,0.1);
-      border-color: rgba(232,182,74,0.25);
+      background: rgba(255,106,26,0.1);
+      border-color: rgba(255,106,26,0.28);
       border-bottom-right-radius: 6px;
     }
 
@@ -269,7 +309,6 @@
       border-radius: 18px;
       border-bottom-left-radius: 6px;
       margin-bottom: 16px;
-      animation: msgIn 240ms ease;
     }
     .typing span {
       width: 7px; height: 7px; border-radius: 999px;
@@ -289,6 +328,7 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* COMPOSER */
     .composer {
       display: flex;
       gap: 10px;
@@ -301,7 +341,7 @@
     }
 
     .composer:focus-within {
-      border-color: rgba(232,182,74,0.45);
+      border-color: rgba(255,106,26,0.45);
       background: rgba(255,255,255,0.05);
     }
 
@@ -327,23 +367,22 @@
       min-width: 44px;
       border: 0;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--accent-warm), var(--accent));
-      color: var(--ink);
+      background: linear-gradient(135deg, var(--orange-warm), var(--orange));
+      color: #fff;
       font-weight: 900;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       font-size: 1rem;
+      box-shadow: 0 8px 20px rgba(255,106,26,0.3);
       transition: transform var(--transition);
     }
 
     .send-btn:hover { transform: translateY(-1px); }
-    .send-btn[disabled] {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+    .send-btn[disabled] { opacity: 0.5; cursor: not-allowed; }
 
+    /* DISCLAIMER */
     .disclaimer {
       font-size: 0.72rem;
       color: var(--muted);
@@ -353,11 +392,9 @@
       opacity: 0.75;
     }
 
+    /* MOBILE */
     @media (max-width: 700px) {
-      html, body {
-        height: 100dvh;
-        overflow: hidden;
-      }
+      html, body { height: 100dvh; overflow: hidden; }
 
       .app {
         height: 100dvh;
@@ -365,16 +402,18 @@
         gap: 8px;
       }
 
-      .brand-mark { width: 38px; height: 38px; font-size: 16px; }
-      .brand-name { font-size: 0.98rem; }
-      .brand-sub { font-size: 0.62rem; }
+      .brand-mark { width: 40px; height: 40px; }
+      .brand-mark svg { width: 22px; height: 22px; }
+      .brand-name { font-size: 1rem; }
+      .brand-sub { font-size: 0.6rem; letter-spacing: 0.14em; }
       .new-chat-btn { padding: 6px 10px; font-size: 0.75rem; }
       .new-chat-text { display: none; }
       .lang-toggle { padding: 3px 5px; gap: 4px; }
       .lang-btn { font-size: 0.72rem; padding: 4px 9px; }
 
-      .welcome-title { font-size: 1.55rem; }
+      .welcome-title { font-size: 1.65rem; }
       .welcome-sub { font-size: 0.9rem; }
+      .topic-chip { font-size: 0.76rem; padding: 5px 10px; }
 
       .msg { font-size: 0.95rem; padding: 12px 14px; max-width: 94%; }
       .composer { padding: 8px; border-radius: 20px; }
@@ -384,7 +423,7 @@
 
     @media (max-width: 380px) {
       .brand-text { display: none; }
-      .welcome-title { font-size: 1.4rem; }
+      .welcome-title { font-size: 1.45rem; }
     }
 
     [data-lang]:not(.show) { display: none; }
@@ -396,11 +435,20 @@
     <!-- HEADER -->
     <div class="top">
       <div class="brand">
-        <div class="brand-mark">B</div>
+        <div class="brand-mark" aria-label="Hoops.Money logo">
+          <!-- Basketball + dollar logo -->
+          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="13" fill="none" stroke="#fff" stroke-width="1.8" opacity="0.95"/>
+            <path d="M3 16 Q 16 10 29 16" stroke="#fff" stroke-width="1.4" fill="none" opacity="0.85"/>
+            <path d="M3 16 Q 16 22 29 16" stroke="#fff" stroke-width="1.4" fill="none" opacity="0.85"/>
+            <path d="M16 3 L 16 29" stroke="#fff" stroke-width="1.4" opacity="0.85"/>
+            <text x="16" y="21" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="900" fill="#f0b74a" stroke="#0a0806" stroke-width="0.4">$</text>
+          </svg>
+        </div>
         <div class="brand-text">
-          <div class="brand-name">Hey Bori</div>
-          <div class="brand-sub" data-lang="en">The Tokenization Educator</div>
-          <div class="brand-sub" data-lang="es">Educador de Tokenización</div>
+          <div class="brand-name">Hoops<span class="dot">.</span>Money</div>
+          <div class="brand-sub" data-lang="en">The Business of Basketball</div>
+          <div class="brand-sub" data-lang="es">El Negocio del Baloncesto</div>
         </div>
       </div>
       <div class="header-actions">
@@ -421,16 +469,16 @@
 
     <!-- COMPOSER -->
     <div class="composer">
-      <textarea id="input" rows="1" placeholder="Ask Bori anything about tokenization…" aria-label="Message"></textarea>
+      <textarea id="input" rows="1" placeholder="Ask about NIL, contracts, money, agents, taxes…" aria-label="Message"></textarea>
       <button id="send" class="send-btn" aria-label="Send">➜</button>
     </div>
 
     <!-- DISCLAIMER -->
     <div class="disclaimer" data-lang="en">
-      Hey Bori provides educational information only, not legal, tax, financial, or investment advice. For your specific situation, consult a qualified professional.
+      Hoops.Money provides educational information only — not legal, tax, financial, or investment advice. For your specific situation, consult a qualified professional.
     </div>
     <div class="disclaimer" data-lang="es">
-      Hey Bori proporciona información educativa únicamente, no asesoría legal, fiscal, financiera o de inversión. Para tu situación específica, consulta a un profesional calificado.
+      Hoops.Money proporciona información educativa únicamente — no asesoría legal, fiscal, financiera o de inversión. Para tu situación específica, consulta a un profesional calificado.
     </div>
 
   </div>
