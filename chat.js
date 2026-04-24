@@ -1,5 +1,6 @@
-// chat.js — Hoops.Money chat frontend
-// Persists conversation across visits via localStorage.
+// chat.js — Hoops.Money chat frontend with free/pro gating
+// Anonymous users: 15 messages/day, then prompted to upgrade
+// Pro users: unlimited (status stored in browser after Stripe redirect)
 
 (function () {
   'use strict';
@@ -7,13 +8,19 @@
   const ENDPOINT = '/api/chat';
   const STORAGE_KEY = 'hoopsMoneyConversation';
   const LANG_KEY = 'hoopsMoneyLang';
+  const ANON_ID_KEY = 'hoopsMoneyAnonId';
+  const PRO_KEY = 'hoopsMoneyPro';
+  const STRIPE_CHECKOUT_URL = 'https://buy.stripe.com/8x228sg0T0xw4og1Ue8Zq04';
 
-  const messagesEl = document.getElementById('messages');
-  const inputEl    = document.getElementById('input');
-  const sendBtn    = document.getElementById('send');
-  const langEnBtn  = document.getElementById('lang-en');
-  const langEsBtn  = document.getElementById('lang-es');
-  const newChatBtn = document.getElementById('newChat');
+  const messagesEl   = document.getElementById('messages');
+  const inputEl      = document.getElementById('input');
+  const sendBtn      = document.getElementById('send');
+  const langEnBtn    = document.getElementById('lang-en');
+  const langEsBtn    = document.getElementById('lang-es');
+  const newChatBtn   = document.getElementById('newChat');
+  const upgradeBtn   = document.getElementById('upgradeBtn');
+  const proBadge     = document.getElementById('proBadge');
+  const upgradeModal = document.getElementById('upgradeModal');
 
   if (!messagesEl || !inputEl || !sendBtn) {
     console.error('[Hoops.Money] Required markup missing.');
@@ -29,7 +36,20 @@
       welcomeEyebrow: 'Educational · Independent · Neutral',
       welcomeTitle: 'The business of basketball — explained clearly.',
       welcomeSub: "Ask anything about NIL, financial literacy, contracts, agents, taxes, endorsements, and post-career planning. Straight answers. No hype. No selling. No sugar-coating bad deals. Built to help players, families, and coaches navigate the money side of the game.",
-      topics: ['NIL Deals', 'Financial Literacy', 'Contracts', 'Agents', 'Taxes', 'Post-Career']
+      topics: ['NIL Deals', 'Financial Literacy', 'Contracts', 'Agents', 'Taxes', 'Post-Career'],
+      limitTitle: "You've reached today's free limit",
+      limitBody: "You've used all 15 free messages for today. Upgrade to Pro for unlimited access — $9/month, cancel anytime.",
+      upgradeCta: 'Upgrade to Pro',
+      modalTitle: 'Hoops.Money Pro',
+      modalSub: 'Unlimited messages. $9/month. Cancel anytime.',
+      modalBenefit1: 'Unlimited daily messages',
+      modalBenefit2: 'Priority access',
+      modalBenefit3: 'Support independent basketball education',
+      modalClose: 'Maybe later',
+      modalCta: 'Upgrade — $9/month',
+      proActive: 'Pro',
+      proWelcome: "You're Pro. Unlimited access is active. Thanks for supporting Hoops.Money.",
+      upgradeNavLabel: 'Upgrade'
     },
     es: {
       placeholder: 'Pregunta sobre NIL, contratos, dinero, agentes, impuestos…',
@@ -39,7 +59,20 @@
       welcomeEyebrow: 'Educativo · Independiente · Neutral',
       welcomeTitle: 'El negocio del baloncesto — explicado con claridad.',
       welcomeSub: 'Pregunta lo que quieras sobre NIL, educación financiera, contratos, agentes, impuestos, patrocinios y planificación post-carrera. Respuestas directas. Sin hype. Sin venderte nada. Sin endulzar malos acuerdos. Construido para ayudar a jugadores, familias y entrenadores a navegar el lado financiero del juego.',
-      topics: ['Acuerdos NIL', 'Educación Financiera', 'Contratos', 'Agentes', 'Impuestos', 'Post-Carrera']
+      topics: ['Acuerdos NIL', 'Educación Financiera', 'Contratos', 'Agentes', 'Impuestos', 'Post-Carrera'],
+      limitTitle: 'Alcanzaste el límite gratis de hoy',
+      limitBody: 'Has usado los 15 mensajes gratis del día. Pásate a Pro para acceso ilimitado — $9/mes, cancela cuando quieras.',
+      upgradeCta: 'Pásate a Pro',
+      modalTitle: 'Hoops.Money Pro',
+      modalSub: 'Mensajes ilimitados. $9/mes. Cancela cuando quieras.',
+      modalBenefit1: 'Mensajes ilimitados todos los días',
+      modalBenefit2: 'Acceso prioritario',
+      modalBenefit3: 'Apoya la educación independiente del baloncesto',
+      modalClose: 'Después',
+      modalCta: 'Pásate a Pro — $9/mes',
+      proActive: 'Pro',
+      proWelcome: 'Eres Pro. Acceso ilimitado activo. Gracias por apoyar a Hoops.Money.',
+      upgradeNavLabel: 'Pro'
     }
   };
 
@@ -47,6 +80,58 @@
   let conversationStarted = false;
   let isSending = false;
 
+  // ── ANONYMOUS ID ──────────────────────────────────────────────
+  function getOrCreateAnonId() {
+    try {
+      let id = localStorage.getItem(ANON_ID_KEY);
+      if (!id) {
+        id = 'anon_' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+        localStorage.setItem(ANON_ID_KEY, id);
+      }
+      return id;
+    } catch {
+      return 'anon_fallback_' + Date.now();
+    }
+  }
+
+  // ── PRO STATUS ────────────────────────────────────────────────
+  function isPro() {
+    try {
+      return localStorage.getItem(PRO_KEY) === 'true';
+    } catch {
+      return false;
+    }
+  }
+
+  function setPro(val) {
+    try {
+      if (val) localStorage.setItem(PRO_KEY, 'true');
+      else localStorage.removeItem(PRO_KEY);
+    } catch {}
+    updateProUI();
+  }
+
+  function updateProUI() {
+    const pro = isPro();
+    if (proBadge) proBadge.style.display = pro ? 'inline-flex' : 'none';
+    if (upgradeBtn) upgradeBtn.style.display = pro ? 'none' : 'inline-flex';
+  }
+
+  // Detect Stripe redirect on page load
+  function checkStripeRedirect() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('upgraded') === 'true') {
+      setPro(true);
+      // Clean the URL so the flag doesn't persist
+      window.history.replaceState({}, document.title, window.location.pathname);
+      // Show a brief Pro welcome
+      setTimeout(() => {
+        addMessage('assistant', I18N[currentLang()].proWelcome, { store: false });
+      }, 400);
+    }
+  }
+
+  // ── LANGUAGE ──────────────────────────────────────────────────
   function currentLang() {
     try {
       return localStorage.getItem(LANG_KEY) === 'es' ? 'es' : 'en';
@@ -71,6 +156,7 @@
     if (!conversationStarted) renderWelcome();
   }
 
+  // ── PERSISTENCE ───────────────────────────────────────────────
   function saveConversation() {
     try {
       if (history.length === 0) localStorage.removeItem(STORAGE_KEY);
@@ -93,6 +179,7 @@
     }
   }
 
+  // ── RENDERING ─────────────────────────────────────────────────
   function renderWelcome() {
     messagesEl.innerHTML = '';
     const t = I18N[currentLang()];
@@ -136,6 +223,32 @@
     el.className = 'msg ' + (isError ? 'error' : (role === 'user' ? 'user' : 'bori'));
     el.textContent = content;
     messagesEl.appendChild(el);
+  }
+
+  function renderLimitMessage() {
+    const t = I18N[currentLang()];
+    const wrap = document.createElement('div');
+    wrap.className = 'msg bori limit-notice';
+
+    const title = document.createElement('div');
+    title.className = 'limit-title';
+    title.textContent = t.limitTitle;
+
+    const body = document.createElement('div');
+    body.className = 'limit-body';
+    body.textContent = t.limitBody;
+
+    const btn = document.createElement('button');
+    btn.className = 'limit-upgrade-btn';
+    btn.type = 'button';
+    btn.textContent = t.upgradeCta;
+    btn.addEventListener('click', openUpgradeModal);
+
+    wrap.appendChild(title);
+    wrap.appendChild(body);
+    wrap.appendChild(btn);
+    messagesEl.appendChild(wrap);
+    scrollToBottom();
   }
 
   function scrollToBottom() {
@@ -195,12 +308,10 @@
 
   function clearConversation() {
     if (isSending) return;
-
     if (history.length > 0) {
       const ok = window.confirm(I18N[currentLang()].clearConfirm);
       if (!ok) return;
     }
-
     history = [];
     saveConversation();
     conversationStarted = false;
@@ -208,19 +319,45 @@
     inputEl.focus();
   }
 
+  // ── UPGRADE MODAL ─────────────────────────────────────────────
+  function openUpgradeModal() {
+    if (upgradeModal) upgradeModal.classList.add('show');
+  }
+
+  function closeUpgradeModal() {
+    if (upgradeModal) upgradeModal.classList.remove('show');
+  }
+
+  function goToCheckout() {
+    // Pass the anon ID so we can link it to the Stripe session later if needed
+    const anonId = getOrCreateAnonId();
+    window.location.href = STRIPE_CHECKOUT_URL + '?client_reference_id=' + encodeURIComponent(anonId);
+  }
+
+  // ── API CALL ──────────────────────────────────────────────────
   async function fetchReply() {
     const res = await fetch(ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: history, language: currentLang() })
+      body: JSON.stringify({
+        messages: history,
+        language: currentLang(),
+        isPro: isPro(),
+        anonId: getOrCreateAnonId()
+      })
     });
 
+    const data = await res.json().catch(() => ({}));
+
     if (!res.ok) {
-      const errBody = await res.json().catch(() => ({}));
-      throw new Error(errBody.error || 'Request failed (' + res.status + ')');
+      if (data && data.limitReached) {
+        const err = new Error('LIMIT_REACHED');
+        err.limitReached = true;
+        throw err;
+      }
+      throw new Error(data.error || 'Request failed (' + res.status + ')');
     }
 
-    const data = await res.json();
     if (!data || typeof data.reply !== 'string') {
       throw new Error('Malformed response from server.');
     }
@@ -245,11 +382,18 @@
       if (typing) typing.remove();
       addMessage('assistant', reply);
     } catch (err) {
-      console.error('[Hoops.Money] send failed:', err);
       if (typing) typing.remove();
-      const t = I18N[currentLang()];
-      const msg = /fetch|network|failed to fetch/i.test(err.message || '') ? t.networkError : t.error;
-      addMessage('assistant', msg, { store: false, isError: true });
+      if (err.limitReached) {
+        // Remove the user message we just added since it wasn't processed
+        // Actually — keep it, just show the upgrade block
+        renderLimitMessage();
+        setTimeout(openUpgradeModal, 600);
+      } else {
+        console.error('[Hoops.Money] send failed:', err);
+        const t = I18N[currentLang()];
+        const msg = /fetch|network|failed to fetch/i.test(err.message || '') ? t.networkError : t.error;
+        addMessage('assistant', msg, { store: false, isError: true });
+      }
     } finally {
       setSending(false);
       inputEl.focus();
@@ -274,8 +418,25 @@
   if (langEnBtn) langEnBtn.addEventListener('click', () => setLang('en'));
   if (langEsBtn) langEsBtn.addEventListener('click', () => setLang('es'));
   if (newChatBtn) newChatBtn.addEventListener('click', clearConversation);
+  if (upgradeBtn) upgradeBtn.addEventListener('click', openUpgradeModal);
+
+  // Modal wiring
+  if (upgradeModal) {
+    const closeBtn = upgradeModal.querySelector('[data-modal-close]');
+    const ctaBtn = upgradeModal.querySelector('[data-modal-cta]');
+    const backdrop = upgradeModal.querySelector('.modal-backdrop');
+    if (closeBtn) closeBtn.addEventListener('click', closeUpgradeModal);
+    if (backdrop) backdrop.addEventListener('click', closeUpgradeModal);
+    if (ctaBtn) ctaBtn.addEventListener('click', goToCheckout);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeUpgradeModal();
+    });
+  }
 
   function init() {
+    getOrCreateAnonId();
+    updateProUI();
+    checkStripeRedirect();
     setLang(currentLang());
     restoreConversation();
     autoResize();
