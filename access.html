@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Your Access — Get Ready Hoops</title>
+<meta name="description" content="Activate your Get Ready Hoops access or recover your access link." />
+<meta name="robots" content="noindex" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --black:#07070b;
+  --dark:#101018;
+  --panel:#171722;
+  --white:#f4f1e8;
+  --muted:#b9b4a8;
+  --green:#7cff6b;
+  --red:#ff4f6d;
+  --gold:#e8b94a;
+  --accent:#e8b94a;
+  --accent-soft:rgba(232,185,74,.13);
+  --accent-border:rgba(232,185,74,.25);
+  --accent-glow:rgba(232,185,74,.4);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:'Barlow',sans-serif;
+  overflow-x:hidden;
+  line-height:1.55;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+a{text-decoration:none;color:inherit}
+
+.nav{position:fixed;top:0;left:0;width:100%;z-index:50;padding:16px 7% 12px;background:rgba(7,7,11,.78);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);}
+.nav-top{display:flex;justify-content:space-between;align-items:center;gap:16px;}
+.nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;letter-spacing:2px;font-size:22px;color:var(--white);text-transform:uppercase;}
+.nav-logo span{color:var(--accent)}
+.lang-toggle{display:flex;align-items:center;gap:8px;font-size:13px;letter-spacing:1px;text-transform:uppercase;}
+.lang-btn{background:transparent;border:none;color:var(--muted);font-family:'Barlow',sans-serif;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;padding:4px 6px;font-size:13px;}
+.lang-btn.active,.lang-btn:hover{color:var(--accent)}
+.lang-sep{color:var(--muted);opacity:.4}
+
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:140px 7% 60px;background:radial-gradient(circle at 50% 20%, rgba(232,185,74,.08), transparent 50%),linear-gradient(180deg,#09090e,#07070b);position:relative;overflow:hidden;}
+main:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);background-size:42px 42px;opacity:.25;pointer-events:none;}
+
+.card{position:relative;z-index:2;max-width:520px;width:100%;background:linear-gradient(180deg,#151520,#0f0f17);border:1px solid var(--accent-border);border-radius:28px;padding:40px 36px;text-align:center;box-shadow:0 0 70px rgba(232,185,74,.06);}
+
+.card h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(34px,5vw,44px);line-height:.95;font-weight:900;text-transform:uppercase;margin-bottom:14px;}
+.card h1 span{color:var(--accent)}
+.card p{color:var(--muted);font-size:16px;line-height:1.55;margin-bottom:24px;}
+.card p strong{color:var(--white);}
+
+.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:6px 14px;border:1px solid var(--accent-border);color:var(--accent);border-radius:999px;text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:800;margin-bottom:18px;background:var(--accent-soft);}
+.eyebrow.ok{color:var(--green);border-color:rgba(124,255,107,.4);background:rgba(124,255,107,.08);}
+.eyebrow.err{color:var(--red);border-color:rgba(255,79,109,.4);background:rgba(255,79,109,.08);}
+
+/* Verifying / loading state */
+.spinner{display:inline-block;width:42px;height:42px;border:3px solid rgba(232,185,74,.18);border-top-color:var(--accent);border-radius:50%;animation:spin 0.9s linear infinite;margin:8px auto 18px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* Tier list */
+.tiers{display:flex;flex-direction:column;gap:10px;margin:18px 0 26px;}
+.tier-row{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:14px 18px;text-align:left;}
+.tier-row .label{font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:15px;color:var(--white);}
+.tier-row .meta{font-size:13px;color:var(--muted);}
+.tier-row .check{color:var(--green);font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:11px;}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px 22px;border-radius:14px;font-family:'Barlow',sans-serif;font-weight:800;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;border:none;transition:.2s ease;}
+.btn.primary{background:var(--accent);color:#111;}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(232,185,74,.25);}
+.btn.outline{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.18);}
+.btn.outline:hover{border-color:var(--accent);color:var(--accent);}
+.btn:disabled{opacity:.5;cursor:wait;}
+.btn::after{content:"→";font-size:16px;transition:transform .2s ease;}
+.btn:hover::after{transform:translateX(3px);}
+.btn.outline::after,.btn.no-arrow::after{content:none;}
+.btn-row{display:flex;flex-direction:column;gap:10px;}
+
+/* Form */
+form{display:flex;flex-direction:column;gap:12px;text-align:left;}
+form label{font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;font-size:11px;color:var(--muted);}
+form input{background:#0a0a10;color:var(--white);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;font-family:'Barlow',sans-serif;font-size:15.5px;outline:none;transition:border-color .2s ease;}
+form input::placeholder{color:var(--muted);opacity:.6;}
+form input:focus{border-color:var(--accent-border);}
+
+.hint{color:var(--muted);font-size:13px;line-height:1.5;margin-top:14px;}
+.hint a{color:var(--accent);}
+.hint a:hover{text-decoration:underline;}
+
+.disclaimer{padding:24px 7% 30px;text-align:center;color:#858585;font-size:12px;background:#050508;border-top:1px solid rgba(255,255,255,.05);line-height:1.5;}
+
+/* State visibility */
+.state{display:none;}
+.state.active{display:block;}
+
+@media(max-width:560px){
+  main{padding:120px 6% 40px;}
+  .card{padding:32px 24px;}
+}
+</style>
+</head>
+
+<body>
+
+<nav class="nav">
+  <div class="nav-top">
+    <a href="/" class="nav-logo">Get Ready <span>Hoops</span></a>
+    <div class="lang-toggle">
+      <button type="button" class="lang-btn active" data-lang="en">EN</button>
+      <span class="lang-sep">|</span>
+      <button type="button" class="lang-btn" data-lang="es">ES</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="card">
+
+    <!-- STATE A: Verifying after Stripe redirect -->
+    <div class="state" id="state-verifying">
+      <div class="eyebrow"><span data-en="Verifying" data-es="Verificando">Verifying</span></div>
+      <div class="spinner"></div>
+      <h1 data-en="Activating Your Access" data-es="Activando Tu Acceso">Activating Your Access</h1>
+      <p data-en="One moment — we're confirming your purchase with Stripe." data-es="Un momento — estamos confirmando tu compra con Stripe.">One moment — we're confirming your purchase with Stripe.</p>
+    </div>
+
+    <!-- STATE B: Verified — show unlocks + CTA into first paid episode -->
+    <div class="state" id="state-success">
+      <div class="eyebrow ok"><span data-en="Access Granted" data-es="Acceso Concedido">Access Granted</span></div>
+      <h1 data-en="You're <span>In</span>." data-es="Estás <span>Adentro</span>.">You're <span>In</span>.</h1>
+      <p id="success-email" data-en="" data-es=""></p>
+
+      <div class="tiers" id="tiers-list"></div>
+
+      <div class="btn-row">
+        <a class="btn primary" id="cta-start" href="/episode-011.html" data-en="Start Episode 011" data-es="Empezar Episodio 011">Start Episode 011</a>
+        <a class="btn outline no-arrow" href="/" data-en="Back To Series" data-es="Volver A La Serie">Back To Series</a>
+      </div>
+
+      <p class="hint" data-en="Save this device — your access is now stored here. To use a different device, return to this page and recover by email." data-es="Guarda este dispositivo — tu acceso queda aquí. Para usar otro dispositivo, vuelve a esta página y recupera por correo.">
+        Save this device — your access is now stored here. To use a different device, return to this page and recover by email.
+      </p>
+    </div>
+
+    <!-- STATE C: Recovery form (default when no params present) -->
+    <div class="state" id="state-recover">
+      <div class="eyebrow"><span data-en="Recover Access" data-es="Recuperar Acceso">Recover Access</span></div>
+      <h1 data-en="Already <span>Purchased</span>?" data-es="¿Ya <span>Compraste</span>?">Already <span>Purchased</span>?</h1>
+      <p data-en="Enter the email you used at checkout. We'll send a fresh access link to that address." data-es="Ingresa el correo que usaste al pagar. Enviaremos un enlace de acceso a esa dirección.">
+        Enter the email you used at checkout. We'll send a fresh access link to that address.
+      </p>
+
+      <form id="recover-form">
+        <label for="recover-email" data-en="Email" data-es="Correo">Email</label>
+        <input type="email" id="recover-email" name="email" required autocomplete="email"
+               data-en-ph="parent@example.com" data-es-ph="papa@ejemplo.com" placeholder="parent@example.com" />
+        <button type="submit" class="btn primary" id="recover-submit" data-en="Send Access Link" data-es="Enviar Enlace De Acceso">Send Access Link</button>
+      </form>
+
+      <p class="hint" data-en="Don't have a purchase yet? <a href='/unlock.html'>See Levels 2 & 3 →</a>" data-es="¿Aún no has comprado? <a href='/unlock.html'>Ver Niveles 2 y 3 →</a>">
+        Don't have a purchase yet? <a href="/unlock.html">See Levels 2 &amp; 3 →</a>
+      </p>
+    </div>
+
+    <!-- STATE D: Recovery email sent -->
+    <div class="state" id="state-recover-sent">
+      <div class="eyebrow ok"><span data-en="Check Your Email" data-es="Revisa Tu Correo">Check Your Email</span></div>
+      <h1 data-en="Link <span>Sent</span>." data-es="Enlace <span>Enviado</span>.">Link <span>Sent</span>.</h1>
+      <p data-en="If that email has a Get Ready Hoops purchase, we just sent a fresh access link to the inbox. Check spam if you don't see it within 2 minutes." data-es="Si ese correo tiene una compra de Get Ready Hoops, acabamos de enviar un enlace de acceso al buzón. Revisa spam si no lo ves en 2 minutos.">
+        If that email has a Get Ready Hoops purchase, we just sent a fresh access link to the inbox. Check spam if you don't see it within 2 minutes.
+      </p>
+      <div class="btn-row">
+        <a class="btn outline no-arrow" href="/" data-en="Back To Series" data-es="Volver A La Serie">Back To Series</a>
+      </div>
+    </div>
+
+    <!-- STATE E: Error -->
+    <div class="state" id="state-error">
+      <div class="eyebrow err"><span data-en="Something Went Wrong" data-es="Algo Salió Mal">Something Went Wrong</span></div>
+      <h1 data-en="We <span>Couldn't</span> Verify That." data-es="No <span>Pudimos</span> Verificarlo.">We <span>Couldn't</span> Verify That.</h1>
+      <p id="error-msg" data-en="Your link may have expired or the purchase couldn't be confirmed. Try recovering your access by email." data-es="Tu enlace pudo haber expirado o no pudimos confirmar la compra. Intenta recuperar tu acceso por correo.">
+        Your link may have expired or the purchase couldn't be confirmed. Try recovering your access by email.
+      </p>
+      <div class="btn-row">
+        <a class="btn primary" href="/access.html" data-en="Recover By Email" data-es="Recuperar Por Correo">Recover By Email</a>
+        <a class="btn outline no-arrow" href="/" data-en="Back To Series" data-es="Volver A La Serie">Back To Series</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="disclaimer">
+  <div data-en="Get Ready Hoops provides educational content only. We do not provide legal, financial, contract, representation, or recruiting advice." data-es="Get Ready Hoops ofrece contenido educativo solamente. No damos consejos legales, financieros, de contratos, representación o reclutamiento.">
+    Get Ready Hoops provides educational content only. We do not provide legal, financial, contract, representation, or recruiting advice.
+  </div>
+  <div style="margin-top:6px;opacity:.6">© 2026 Get Ready Hoops</div>
+</footer>
+
+<script>
+// ============================================================
+// LANGUAGE
+// ============================================================
+const langButtons = document.querySelectorAll('.lang-btn');
+const translatable = document.querySelectorAll('[data-en][data-es]');
+
+let lang = 'en';
+function setLanguage(l) {
+  lang = l;
+  translatable.forEach(el => {
+    const text = el.getAttribute('data-' + l);
+    if (text) el.innerHTML = text;
+  });
+  document.querySelectorAll('[data-en-ph][data-es-ph]').forEach(el => {
+    const ph = el.getAttribute('data-' + l + '-ph');
+    if (ph) el.setAttribute('placeholder', ph);
+  });
+  langButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.lang === l));
+  document.documentElement.lang = l;
+  try { localStorage.setItem('grhLang', l); } catch (e) {}
+}
+langButtons.forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.lang)));
+let savedLang = 'en';
+try { savedLang = localStorage.getItem('grhLang') || 'en'; } catch (e) {}
+setLanguage(savedLang);
+
+// ============================================================
+// STATE MACHINE
+// ============================================================
+const states = {
+  verifying: document.getElementById('state-verifying'),
+  success: document.getElementById('state-success'),
+  recover: document.getElementById('state-recover'),
+  recoverSent: document.getElementById('state-recover-sent'),
+  error: document.getElementById('state-error')
+};
+
+function showState(name) {
+  Object.values(states).forEach(el => el.classList.remove('active'));
+  if (states[name]) states[name].classList.add('active');
+}
+
+// ============================================================
+// ACCESS TOKEN STORAGE
+// ============================================================
+const TOKEN_KEY = 'grhAccessToken';
+function saveToken(token) {
+  try { localStorage.setItem(TOKEN_KEY, token); } catch (e) {}
+}
+
+// ============================================================
+// TIER DISPLAY
+// ============================================================
+const TIER_LABELS = {
+  en: { level2: 'Level 2: Separation', level3: 'Level 3: Mastery' },
+  es: { level2: 'Nivel 2: Separación', level3: 'Nivel 3: Maestría' }
+};
+const TIER_META = {
+  en: { level2: 'Episodes 011 — 020', level3: 'Episodes 021 — 030' },
+  es: { level2: 'Episodios 011 — 020', level3: 'Episodios 021 — 030' }
+};
+const TIER_CHECK = { en: 'Unlocked', es: 'Desbloqueado' };
+
+function renderTiers(tiers) {
+  const wrap = document.getElementById('tiers-list');
+  wrap.innerHTML = '';
+  tiers.forEach(t => {
+    const row = document.createElement('div');
+    row.className = 'tier-row';
+    const left = document.createElement('div');
+    const label = document.createElement('div');
+    label.className = 'label';
+    label.textContent = (TIER_LABELS[lang] && TIER_LABELS[lang][t]) || t;
+    const meta = document.createElement('div');
+    meta.className = 'meta';
+    meta.textContent = (TIER_META[lang] && TIER_META[lang][t]) || '';
+    left.appendChild(label);
+    left.appendChild(meta);
+    const check = document.createElement('div');
+    check.className = 'check';
+    check.textContent = '✓ ' + TIER_CHECK[lang];
+    row.appendChild(left);
+    row.appendChild(check);
+    wrap.appendChild(row);
+  });
+
+  // Set the start CTA to the first unlocked episode
+  const cta = document.getElementById('cta-start');
+  if (tiers.includes('level2')) {
+    cta.href = '/episode-011.html';
+    cta.textContent = lang === 'es' ? 'Empezar Episodio 011' : 'Start Episode 011';
+  } else if (tiers.includes('level3')) {
+    cta.href = '/episode-021.html';
+    cta.textContent = lang === 'es' ? 'Empezar Episodio 021' : 'Start Episode 021';
+  }
+}
+
+function setSuccessEmail(email) {
+  const el = document.getElementById('success-email');
+  if (lang === 'es') {
+    el.innerHTML = `Acceso confirmado para <strong>${escapeHtml(email)}</strong>.`;
+  } else {
+    el.innerHTML = `Access confirmed for <strong>${escapeHtml(email)}</strong>.`;
+  }
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// ============================================================
+// ROUTING — what state to show based on URL params
+// ============================================================
+async function init() {
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get('session_id');
+  const token = params.get('token');
+
+  if (sessionId) {
+    // Coming from Stripe checkout success
+    showState('verifying');
+    await verifyStripeSession(sessionId);
+    // Clean URL so refreshing doesn't re-verify
+    window.history.replaceState({}, '', '/access.html');
+  } else if (token) {
+    // Coming from a magic link click
+    showState('verifying');
+    await activateToken(token);
+    window.history.replaceState({}, '', '/access.html');
+  } else {
+    // Default — show recovery form
+    showState('recover');
+  }
+}
+
+async function verifyStripeSession(sessionId) {
+  try {
+    const res = await fetch('/api/access', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'verify_session', session_id: sessionId })
+    });
+    const data = await res.json();
+    if (!res.ok || !data.token) {
+      showState('error');
+      return;
+    }
+    saveToken(data.token);
+    setSuccessEmail(data.email);
+    renderTiers(data.tiers);
+    showState('success');
+  } catch (e) {
+    showState('error');
+  }
+}
+
+async function activateToken(token) {
+  try {
+    const res = await fetch('/api/access', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'validate', token })
+    });
+    const data = await res.json();
+    if (!res.ok || !data.tiers) {
+      showState('error');
+      return;
+    }
+    saveToken(token);
+    setSuccessEmail(data.email);
+    renderTiers(data.tiers);
+    showState('success');
+  } catch (e) {
+    showState('error');
+  }
+}
+
+// ============================================================
+// RECOVERY FORM
+// ============================================================
+const recoverForm = document.getElementById('recover-form');
+const recoverEmail = document.getElementById('recover-email');
+const recoverSubmit = document.getElementById('recover-submit');
+
+recoverForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = recoverEmail.value.trim();
+  if (!email) return;
+
+  const original = recoverSubmit.textContent;
+  recoverSubmit.disabled = true;
+  recoverSubmit.textContent = lang === 'es' ? 'Enviando…' : 'Sending…';
+
+  try {
+    await fetch('/api/access', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'recover', email })
+    });
+    showState('recoverSent');
+  } catch (err) {
+    // Even on error, show the "sent" state — never reveal whether email exists
+    showState('recoverSent');
+  } finally {
+    recoverSubmit.disabled = false;
+    recoverSubmit.textContent = original;
+  }
+});
+
+// Kick off
+init();
+</script>
+
+</body>
+</html>
