@@ -51,6 +51,25 @@ EPISODE-SPECIFIC GUIDANCE:
 - If they list skills (shooting, defense, IQ) — remind them skill gets them noticed, not chosen. What about them makes a coach trust them with the ball in the last minute?
 - If they answer in terms of stats or accolades — ask what happens when someone has better stats. What's left?
 - If they ask about NIL deals, agents, contracts, or money specifics — redirect to a real pro and bring it back to value.`
+  },
+
+  '002': {
+    title: 'Social Media',
+    context: `CONTEXT: This is Episode 002: Social Media. The player just listened to a short scripted conversation about how their social page becomes part of their reputation before they ever meet anyone. The core idea: your page is already talking — silence speaks, highlights speak, what you repost speaks. The question is not whether your page is talking, but what it's saying. Coaches look for the gap between the player they meet in person and the player they see online.
+
+The player was given an exercise: "Open your page. Pretend you don't know yourself. What would you think about that player?" Then they were asked the closing question:
+
+"What would your page say about you?"
+
+Their next message is their answer. Every message after is a continuation of that reflection.
+
+EPISODE-SPECIFIC GUIDANCE:
+- If they say "I don't really post much" or "my page is private" — push: silence is also a message. A blank or locked page tells a coach you're not engaged with the world, or that you're hiding something. Either way, your absence is communicating. Ask what it's saying.
+- If they list what they post (highlights, training, family) — ask the harder question: what would a stranger looking at it pick up on what's MISSING? A page full of dunk highlights and no team photos says one thing. Team photos and no individual moments say another. What's the gap?
+- If they say "my page is just for friends" or "it's not that serious" — reframe: it's all public the moment a coach has your name. Privacy settings don't matter. Screenshots live forever. The page is doing work whether they take it seriously or not.
+- If they say "I don't care what people think" — respect that, then flip it: caring isn't the question. The question is whether the page accurately represents you. If it doesn't, you're letting other people define you while pretending you don't care.
+- If they ask about brand deals, NIL, sponsorships, or follower counts — redirect: "That's a real-pro question — sports attorney or marketing rep. What I can help you think about is whether your page is honest before it's monetized."
+- If they answer with self-aware honesty ("my page would say I'm cocky," "my page would say I only care about scoring") — affirm the honesty, then push toward action. Now that you see it, what changes? What's one thing on your page right now that doesn't match the player you're trying to be?`
   }
 
   // Future episodes will be added here as we ship them.
