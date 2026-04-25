@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Episode 009: Discipline — Get Ready Hoops</title>
+<meta name="description" content="Who a player becomes in public starts with who they are in private. Episode 009 of Get Ready Hoops with Bori." />
+<meta property="og:title" content="Episode 009: Discipline — Get Ready Hoops" />
+<meta property="og:description" content="Public discipline is acting. Private discipline is who you actually are. Who are you when nobody is watching?" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://getreadyhoops.com/episode-009.html" />
+<meta property="og:image" content="https://getreadyhoops.com/ready.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --black:#07070b;
+  --dark:#101018;
+  --panel:#171722;
+  --panel2:#202033;
+  --white:#f4f1e8;
+  --muted:#b9b4a8;
+  --green:#7cff6b;
+  --blue:#48c6ff;
+  --red:#ff4f6d;
+  --purple:#b66cff;
+  --orange:#ff9f43;
+
+  /* ====== EPISODE ACCENT — change this one variable per episode ====== */
+  /* Episode 009: Discipline — Level 1: Awareness — Dark Mustard */
+  --accent:#c89030;
+  --accent-soft:rgba(200,144,48,.13);
+  --accent-border:rgba(200,144,48,.25);
+  --accent-glow:rgba(200,144,48,.4);
+  /* =================================================================== */
+
+  --host:var(--blue);
+  --host-soft:rgba(72,198,255,.12);
+  --host-border:rgba(72,198,255,.22);
+  --player:var(--white);
+  --player-soft:rgba(244,241,232,.06);
+  --player-border:rgba(244,241,232,.14);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:'Barlow',sans-serif;
+  overflow-x:hidden;
+  line-height:1.55;
+}
+a{text-decoration:none;color:inherit}
+
+/* ---------------- NAV ---------------- */
+.nav{position:fixed;top:0;left:0;width:100%;z-index:50;padding:16px 7% 12px;background:rgba(7,7,11,.78);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);}
+.nav-top{display:flex;justify-content:space-between;align-items:center;gap:16px;}
+.nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;letter-spacing:2px;font-size:22px;color:var(--white);text-transform:uppercase;}
+.nav-logo span{color:var(--accent)}
+.lang-toggle{display:flex;align-items:center;gap:8px;color:var(--accent);font-size:13px;letter-spacing:1px;text-transform:uppercase;}
+.lang-btn{background:transparent;border:none;color:var(--muted);font-family:'Barlow',sans-serif;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;padding:4px 6px;font-size:13px;}
+.lang-btn.active,.lang-btn:hover{color:var(--accent)}
+.lang-sep{color:var(--muted);opacity:.4}
+
+/* ---------------- HEADER (episode hero) ---------------- */
+.episode-hero{position:relative;padding:140px 7% 50px 7%;overflow:hidden;background:radial-gradient(circle at 30% 20%, rgba(200,144,48,.10), transparent 50%),linear-gradient(180deg,#09090e,#07070b);}
+.episode-hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);background-size:42px 42px;opacity:.25;pointer-events:none;}
+.episode-hero-inner{position:relative;z-index:2;max-width:880px;margin:0 auto;}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border:1px solid var(--accent-border);color:var(--accent);border-radius:999px;text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:800;margin-bottom:24px;background:var(--accent-soft);}
+.eyebrow .live-dot{width:8px;height:8px;border-radius:50%;background:#cc0030;box-shadow:0 0 10px #ff3a5e;animation:livePulse 1.6s ease-in-out infinite;}
+@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.85)}}
+.episode-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;letter-spacing:3px;font-size:14px;color:var(--accent);text-transform:uppercase;margin-bottom:8px;}
+h1.episode-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(48px,9vw,104px);line-height:.9;font-weight:900;text-transform:uppercase;margin-bottom:18px;text-shadow:0 4px 30px rgba(0,0,0,.55);}
+.episode-sub{color:var(--muted);font-size:clamp(17px,2.2vw,21px);max-width:680px;line-height:1.5;}
+
+.back-link{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;letter-spacing:1px;text-transform:uppercase;font-weight:700;margin-bottom:32px;transition:color .2s ease;}
+.back-link:hover{color:var(--accent)}
+.back-link::before{content:"←";display:inline-block;transition:transform .2s ease;}
+.back-link:hover::before{transform:translateX(-3px);}
+
+/* ---------------- STEP STRIP ---------------- */
+.step-strip{display:flex;gap:0;justify-content:center;margin:0 auto 30px;max-width:600px;border:1px solid rgba(255,255,255,.06);border-radius:999px;padding:6px;background:var(--dark);}
+.step-pill{flex:1;text-align:center;padding:8px 12px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-radius:999px;}
+.step-pill.current{background:var(--accent);color:#111;}
+
+/* ---------------- SECTIONS ---------------- */
+section{padding:60px 7%;}
+.section-inner{max-width:880px;margin:0 auto;}
+.section-label{font-family:'Barlow Condensed',sans-serif;color:var(--accent);font-weight:900;letter-spacing:3px;font-size:13px;text-transform:uppercase;margin-bottom:14px;display:inline-flex;align-items:center;gap:10px;}
+.section-label::before{content:"";width:32px;height:2px;background:var(--accent);}
+h2.section-h{font-family:'Barlow Condensed',sans-serif;font-size:clamp(34px,5.5vw,56px);line-height:.95;font-weight:900;text-transform:uppercase;margin-bottom:28px;}
+h2.section-h span{color:var(--accent)}
+
+/* ---------------- LISTEN: scripted bubbles ---------------- */
+.script{background:linear-gradient(180deg,#151520,#0f0f17);border:1px solid var(--accent-border);border-radius:28px;padding:28px;box-shadow:0 0 70px rgba(200,144,48,.05);}
+.script-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;color:var(--accent);font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;text-transform:uppercase;letter-spacing:1px;}
+.script-pill{font-family:'Barlow',sans-serif;font-size:11px;letter-spacing:1px;border:1px solid rgba(124,255,107,.4);color:var(--green);border-radius:999px;padding:5px 10px;font-weight:700;text-transform:uppercase;}
+.bubble{border-radius:18px;padding:16px 18px;margin-bottom:12px;font-size:16.5px;line-height:1.5;}
+.bubble:last-child{margin-bottom:0;}
+.bubble.host{background:var(--host-soft);border:1px solid var(--host-border);}
+.bubble.bori{background:var(--accent-soft);border:1px solid var(--accent-border);margin-left:24px;}
+.bubble strong{display:block;font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;font-weight:800;}
+.bubble.host strong{color:var(--host)}
+.bubble.bori strong{color:var(--accent)}
+
+/* ---------------- REFLECT: the question ---------------- */
+.question-block{margin:0 auto;padding:42px 32px;background:radial-gradient(circle at 50% 0%, rgba(200,144,48,.18), transparent 70%),linear-gradient(180deg,#1a1408,#101018);border:1px solid var(--accent-border);border-radius:28px;text-align:center;position:relative;overflow:hidden;}
+.question-block::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:2px;background:linear-gradient(90deg, transparent, var(--accent), transparent);}
+.question-label{display:inline-block;font-family:'Barlow Condensed',sans-serif;color:var(--accent);font-weight:900;letter-spacing:4px;font-size:12px;text-transform:uppercase;margin-bottom:18px;padding:6px 14px;border:1px solid var(--accent-border);border-radius:999px;background:var(--accent-soft);}
+.question-text{font-family:'Barlow Condensed',sans-serif;font-size:clamp(30px,5vw,52px);line-height:1.05;font-weight:900;text-transform:uppercase;text-shadow:0 2px 30px var(--accent-glow);}
+.question-text span{color:var(--accent)}
+
+/* ---------------- TALK: the chat ---------------- */
+.chat-shell{background:linear-gradient(180deg,#151520,#0f0f17);border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:24px;}
+.chat{padding:0 4px;min-height:120px;}
+.msg{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.msg:last-child{border-bottom:none;}
+.msg-who{display:block;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.msg.bori .msg-who{color:var(--accent)}
+.msg.player .msg-who{color:var(--white);opacity:.55}
+.msg-text{font-size:16px;line-height:1.55;white-space:pre-wrap;word-wrap:break-word;color:var(--white);}
+.msg-text.streaming::after{content:"▍";display:inline-block;margin-left:2px;color:var(--accent);animation:blink 1s steps(2,start) infinite;}
+@keyframes blink{to{visibility:hidden;}}
+
+.composer{display:flex;gap:10px;margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.06);}
+.composer textarea{flex:1;resize:none;min-height:54px;max-height:160px;background:#0a0a10;color:var(--white);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 16px;font-family:'Barlow',sans-serif;font-size:15.5px;line-height:1.45;outline:none;transition:border-color .2s ease;}
+.composer textarea::placeholder{color:var(--muted);opacity:.7}
+.composer textarea:focus{border-color:var(--accent-border)}
+.composer button{background:var(--accent);color:#111;border:0;border-radius:14px;padding:0 24px;font-family:'Barlow',sans-serif;font-weight:800;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:transform .2s ease, box-shadow .2s ease;}
+.composer button:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(200,144,48,.22)}
+.composer button:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none;}
+
+.hint{color:var(--muted);font-size:12.5px;letter-spacing:.5px;margin-top:14px;text-align:center;opacity:.7;}
+.err{color:var(--red);font-size:13px;margin-top:10px;text-align:center;display:none;}
+.err.visible{display:block;}
+
+/* ---------------- ENGAGEMENT GATE ---------------- */
+.gate{margin-top:32px;text-align:center;}
+.gate-locked{padding:24px 28px;background:linear-gradient(180deg,#151520,#0f0f17);border:1px dashed rgba(255,255,255,.14);border-radius:18px;}
+.gate-locked-msg{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:13px;margin-bottom:6px;}
+.gate-locked-msg::before{content:"🔒";font-size:14px;}
+.gate-locked-sub{color:var(--muted);font-size:13px;opacity:.7;}
+.gate-unlocked{display:none;}
+.gate.is-unlocked .gate-locked{display:none;}
+.gate.is-unlocked .gate-unlocked{display:block;}
+.gate-cta{display:inline-flex;align-items:center;gap:10px;padding:18px 32px;border-radius:999px;background:var(--accent);color:#111;font-family:'Barlow',sans-serif;font-weight:900;font-size:15px;letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer;transition:.2s ease;text-decoration:none;animation:gateGlow 2s ease-in-out infinite;}
+.gate-cta:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(200,144,48,.35);animation:none;}
+.gate-cta::after{content:"→";transition:transform .2s ease;}
+.gate-cta:hover::after{transform:translateX(5px);}
+@keyframes gateGlow{0%,100%{box-shadow:0 0 0 rgba(200,144,48,0);}50%{box-shadow:0 0 30px rgba(200,144,48,.35);}}
+.gate-skip{display:inline-block;margin-top:14px;color:var(--muted);font-size:12px;letter-spacing:1px;text-transform:uppercase;font-weight:700;opacity:.55;transition:opacity .2s ease, color .2s ease;}
+.gate-skip:hover{opacity:1;color:var(--accent);}
+
+/* ---------------- FOOTER CTA ---------------- */
+.episode-footer{padding:80px 7% 60px;text-align:center;background:radial-gradient(circle at center, rgba(200,144,48,.10), transparent 50%),#08080d;border-top:1px solid rgba(255,255,255,.05);}
+.episode-footer h3{font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,5vw,56px);text-transform:uppercase;line-height:.95;margin-bottom:14px;}
+.episode-footer h3 span{color:var(--accent)}
+.episode-footer p{color:var(--muted);font-size:17px;line-height:1.5;max-width:560px;margin:0 auto 28px;}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;font-family:'Barlow',sans-serif;font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:14px;transition:.2s ease;cursor:pointer;border:none;}
+.btn.outline{border:1px solid rgba(255,255,255,.26);color:var(--white);background:transparent;}
+.btn.outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+
+.disclaimer{padding:30px 7% 40px;text-align:center;color:#858585;font-size:12.5px;background:#050508;border-top:1px solid rgba(255,255,255,.05);line-height:1.6;}
+
+@media(max-width:780px){
+  section{padding:48px 6%;}
+  .episode-hero{padding:120px 6% 40px;}
+  .episode-footer{padding:60px 6% 50px;}
+  .bubble.bori{margin-left:0;}
+  .step-strip{max-width:100%;}
+  .step-pill{font-size:11px;letter-spacing:1px;padding:8px 6px;}
+  .composer{flex-direction:column;}
+  .composer button{padding:14px 20px;}
+  .question-block{padding:32px 22px;}
+}
+</style>
+</head>
+
+<body>
+
+<nav class="nav">
+  <div class="nav-top">
+    <a href="/" class="nav-logo">Get Ready <span>Hoops</span></a>
+    <div class="lang-toggle">
+      <button type="button" class="lang-btn active" data-lang="en">EN</button>
+      <span class="lang-sep">|</span>
+      <button type="button" class="lang-btn" data-lang="es">ES</button>
+    </div>
+  </div>
+</nav>
+
+<header class="episode-hero">
+  <div class="episode-hero-inner">
+    <a href="/" class="back-link" data-en="Back To Series" data-es="Volver A La Serie">Back To Series</a>
+
+    <div class="eyebrow">
+      <span class="live-dot"></span>
+      <span data-en="Episode Is Live" data-es="Episodio En Vivo">Episode Is Live</span>
+    </div>
+
+    <div class="episode-num" data-en="Episode 009 · Level 1: Awareness" data-es="Episodio 009 · Nivel 1: Conciencia">Episode 009 · Level 1: Awareness</div>
+    <h1 class="episode-title" data-en="Discipline" data-es="Disciplina">Discipline</h1>
+    <p class="episode-sub" data-en="Who a player becomes in public starts with who they are in private." data-es="Quien el jugador es en público empieza con quien es en privado.">
+      Who a player becomes in public starts with who they are in private.
+    </p>
+  </div>
+</header>
+
+<!-- STEP STRIP -->
+<div style="padding:0 7%;">
+  <div class="step-strip">
+    <div class="step-pill current" data-en="1. Listen" data-es="1. Escucha">1. Listen</div>
+    <div class="step-pill" data-en="2. Reflect" data-es="2. Reflexiona">2. Reflect</div>
+    <div class="step-pill" data-en="3. Talk" data-es="3. Habla">3. Talk</div>
+  </div>
+</div>
+
+<!-- STEP 1: LISTEN -->
+<section>
+  <div class="section-inner">
+    <div class="section-label" data-en="Step 1 — Listen" data-es="Paso 1 — Escucha">Step 1 — Listen</div>
+    <h2 class="section-h" data-en="Public Discipline Is Acting.<br><span>Private Discipline Is Who You Actually Are.</span>" data-es="La Disciplina Pública Es Actuar.<br><span>La Disciplina Privada Es Quién Eres Realmente.</span>">Public Discipline Is Acting.<br><span>Private Discipline Is Who You Actually Are.</span></h2>
+
+    <div class="script" id="script">
+      <div class="script-header">
+        <span data-en="Live Chatcast" data-es="Chatcast En Vivo">Live Chatcast</span>
+        <span class="script-pill" data-en="Interactive" data-es="Interactivo">Interactive</span>
+      </div>
+      <div id="script-bubbles"></div>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 2: REFLECT -->
+<section>
+  <div class="section-inner">
+    <div class="section-label" data-en="Step 2 — Reflect" data-es="Paso 2 — Reflexiona">Step 2 — Reflect</div>
+    <div class="question-block">
+      <div class="question-label" data-en="The Question" data-es="La Pregunta">The Question</div>
+      <p class="question-text" data-en="Who are you when <span>nobody</span> is watching?" data-es="¿Quién eres cuando <span>nadie</span> te ve?">Who are you when <span>nobody</span> is watching?</p>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 3: TALK -->
+<section>
+  <div class="section-inner">
+    <div class="section-label" data-en="Step 3 — Talk With Bori" data-es="Paso 3 — Habla Con Bori">Step 3 — Talk With Bori</div>
+
+    <div class="chat-shell">
+      <div class="chat" id="chat" aria-live="polite">
+        <div class="msg bori">
+          <span class="msg-who">Bori</span>
+          <span class="msg-text" data-en="Yesterday — when nobody was watching, what's one small thing you said you'd do and didn't? Or did do? Either answer is real. Just be honest." data-es="Ayer — cuando nadie te veía, ¿cuál es una cosa pequeña que dijiste que ibas a hacer y no hiciste? ¿O sí hiciste? Cualquier respuesta es real. Solo sé honesto.">Yesterday — when nobody was watching, what's one small thing you said you'd do and didn't? Or did do? Either answer is real. Just be honest.</span>
+        </div>
+      </div>
+      <div class="composer">
+        <textarea id="input" rows="2" data-en-ph="Type your answer to Bori…" data-es-ph="Escribe tu respuesta a Bori…" placeholder="Type your answer to Bori…"></textarea>
+        <button id="send" type="button" data-en="Send" data-es="Enviar">Send</button>
+      </div>
+      <div class="hint" data-en="Free preview. Refresh resets the conversation." data-es="Vista previa gratis. Recargar reinicia la conversación.">Free preview. Refresh resets the conversation.</div>
+      <div class="err" id="err"></div>
+    </div>
+
+    <!-- ENGAGEMENT GATE -->
+    <div class="gate" id="gate">
+      <div class="gate-locked">
+        <div class="gate-locked-msg" data-en="Send Bori A Message To Continue" data-es="Envía Un Mensaje A Bori Para Continuar">Send Bori A Message To Continue</div>
+        <div class="gate-locked-sub" data-en="At least 20 characters. Skimmers don't make it in this game." data-es="Al menos 20 caracteres. Los superficiales no llegan en este juego.">At least 20 characters. Skimmers don't make it in this game.</div>
+      </div>
+      <div class="gate-unlocked">
+        <a class="gate-cta" id="continue-cta" href="/episode-010.html">
+          <span data-en="Continue To Episode 010" data-es="Continuar Al Episodio 010">Continue To Episode 010</span>
+        </a>
+        <br>
+        <a class="gate-skip" href="/episode-010.html" data-en="Skip For Now →" data-es="Saltar Por Ahora →">Skip For Now →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="episode-footer">
+  <h3 data-en="That's Episode 009.<br><span>21 More To Go.</span>" data-es="Ese Fue El Episodio 009.<br><span>Quedan 21 Más.</span>">That's Episode 009.<br><span>21 More To Go.</span></h3>
+  <p data-en="Each one ends with a question you can't ignore." data-es="Cada uno termina con una pregunta que no puedes ignorar.">Each one ends with a question you can't ignore.</p>
+  <a class="btn outline" href="/#episodes" data-en="See All Episodes" data-es="Ver Todos Los Episodios">See All Episodes</a>
+</section>
+
+<footer class="disclaimer">
+  <div data-en="Get Ready Hoops provides educational content only. We do not provide legal, financial, contract, representation, or recruiting advice. For your specific situation, work with a sports attorney, CPA, or certified advisor." data-es="Get Ready Hoops ofrece contenido educativo solamente. No damos consejos legales, financieros, de contratos, representación o reclutamiento. Para tu situación específica, trabaja con un abogado deportivo, CPA o asesor certificado.">
+    Get Ready Hoops provides educational content only. We do not provide legal, financial, contract, representation, or recruiting advice. For your specific situation, work with a sports attorney, CPA, or certified advisor.
+  </div>
+  <div style="margin-top:10px;opacity:.6">© 2026 Get Ready Hoops</div>
+</footer>
+
+<script>
+// ============================================================
+// EPISODE CONFIG
+// ============================================================
+const EPISODE_ID = '009';
+const GATE_MIN_CHARS = 20;
+
+// ============================================================
+// SCRIPTED OPENER (per-episode content)
+// ============================================================
+const SCRIPT = {
+  en: [
+    { who: 'Host Bot', role: 'host', said: "Why are coaches obsessed with what players do off the court when the games are won on the court?" },
+    { who: 'Bori', role: 'bori', said: "Because the games are won on the court. But the off-court is what determines whether the on-court ever shows up. Most coaches have figured out a hard truth — the player they get on Saturday is the one they trained Tuesday through Friday at 6 AM. Saturday is the test. The week is the answer." },
+    { who: 'Host Bot', role: 'host', said: "What\u2019s the actual difference between public and private?" },
+    { who: 'Bori', role: 'bori', said: "Public is what you do when you know someone is watching. The drill in front of the coach. The form in front of the camera. The handshake in front of the parents. Private is what you do when nobody would ever know. Showing up at 6:47 instead of 7. Doing the rep right when no one\u2019s counting. Putting the phone down when nothing forces you." },
+    { who: 'Host Bot', role: 'host', said: "And the gap between those two?" },
+    { who: 'Bori', role: 'bori', said: "The gap is who you actually are. You\u2019re not the player you are when you\u2019re being watched. You\u2019re the player you are when you\u2019re alone. If those two are the same player — that\u2019s discipline. If they\u2019re different — that\u2019s performance." },
+    { who: 'Host Bot', role: 'host', said: "What does private discipline actually look like?" },
+    { who: 'Bori', role: 'bori', said: "It\u2019s small. It\u2019s boring. It\u2019s filling your water bottle the night before because you don\u2019t trust morning-you. It\u2019s the second free throw rep when the first one went in. It\u2019s going to bed an hour earlier the night before practice because the next-day version of you needs it. Tiny. Unwitnessed. Stacks up to the player a coach can build around." }
+  ],
+  es: [
+    { who: 'Host Bot', role: 'host', said: "\u00BFPor qu\u00E9 los coaches est\u00E1n obsesionados con lo que los jugadores hacen fuera de la cancha cuando los juegos se ganan en la cancha?" },
+    { who: 'Bori', role: 'bori', said: "Porque los juegos se ganan en la cancha. Pero lo de fuera de la cancha determina si lo de la cancha aparece. La mayor\u00EDa de los coaches ya entendi\u00F3 una verdad dura — el jugador que reciben el s\u00E1bado es el que entrenaron de martes a viernes a las 6 AM. El s\u00E1bado es el examen. La semana es la respuesta." },
+    { who: 'Host Bot', role: 'host', said: "\u00BFCu\u00E1l es la diferencia real entre p\u00FAblico y privado?" },
+    { who: 'Bori', role: 'bori', said: "P\u00FAblico es lo que haces cuando sabes que alguien te ve. El ejercicio frente al coach. La forma frente a la c\u00E1mara. El saludo frente a los padres. Privado es lo que haces cuando nadie nunca lo sabr\u00EDa. Llegar a las 6:47 en vez de a las 7. Hacer la repetici\u00F3n bien cuando nadie est\u00E1 contando. Soltar el tel\u00E9fono cuando nada te obliga." },
+    { who: 'Host Bot', role: 'host', said: "\u00BFY la diferencia entre esos dos?" },
+    { who: 'Bori', role: 'bori', said: "La diferencia es qui\u00E9n eres realmente. No eres el jugador que eres cuando te est\u00E1n viendo. Eres el jugador que eres cuando est\u00E1s solo. Si esos dos son el mismo jugador — eso es disciplina. Si son diferentes — eso es actuar." },
+    { who: 'Host Bot', role: 'host', said: "\u00BFC\u00F3mo se ve la disciplina privada en realidad?" },
+    { who: 'Bori', role: 'bori', said: "Es peque\u00F1a. Es aburrida. Es llenar tu botella de agua la noche antes porque no conf\u00EDas en el t\u00FA de la ma\u00F1ana. Es la segunda repetici\u00F3n del tiro libre cuando la primera entr\u00F3. Es acostarse una hora m\u00E1s temprano la noche antes de la pr\u00E1ctica porque la versi\u00F3n del pr\u00F3ximo d\u00EDa te necesita. Peque\u00F1o. Sin testigos. Se acumula al jugador alrededor del que un coach puede construir." }
+  ]
+};
+
+const UI = {
+  en: { you: 'You', thinking: 'Thinking…', errGeneric: 'Something went wrong. Try again in a moment.', errRate: "You're going a bit fast. Wait a moment and try again." },
+  es: { you: 'Tú', thinking: 'Pensando…', errGeneric: 'Algo salió mal. Intenta de nuevo en un momento.', errRate: 'Vas un poco rápido. Espera un momento e intenta de nuevo.' }
+};
+
+// ============================================================
+// LANGUAGE
+// ============================================================
+let lang = 'en';
+const langButtons = document.querySelectorAll('.lang-btn');
+const translatable = document.querySelectorAll('[data-en][data-es]');
+
+function renderScript() {
+  const wrap = document.getElementById('script-bubbles');
+  wrap.innerHTML = '';
+  SCRIPT[lang].forEach(line => {
+    const div = document.createElement('div');
+    div.className = `bubble ${line.role}`;
+    const strong = document.createElement('strong');
+    strong.textContent = line.who;
+    const span = document.createElement('span');
+    span.textContent = line.said;
+    div.appendChild(strong);
+    div.appendChild(span);
+    wrap.appendChild(div);
+  });
+}
+
+function setLanguage(l) {
+  lang = l;
+  translatable.forEach(el => {
+    const text = el.getAttribute('data-' + l);
+    if (text) el.innerHTML = text;
+  });
+  document.querySelectorAll('[data-en-ph][data-es-ph]').forEach(el => {
+    const ph = el.getAttribute('data-' + l + '-ph');
+    if (ph) el.setAttribute('placeholder', ph);
+  });
+  langButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.lang === l));
+  document.documentElement.lang = l;
+  renderScript();
+  try { localStorage.setItem('grhLang', l); } catch (e) {}
+}
+
+langButtons.forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.lang)));
+
+let savedLang = 'en';
+try { savedLang = localStorage.getItem('grhLang') || 'en'; } catch (e) {}
+setLanguage(savedLang);
+
+// ============================================================
+// STEP STRIP
+// ============================================================
+const stepPills = document.querySelectorAll('.step-pill');
+const sections = document.querySelectorAll('section');
+function updateStepStrip() {
+  const scrollY = window.scrollY + window.innerHeight * 0.35;
+  let active = 0;
+  for (let i = 0; i < 3; i++) {
+    if (sections[i] && sections[i].offsetTop <= scrollY) active = i;
+  }
+  stepPills.forEach((p, i) => p.classList.toggle('current', i === active));
+}
+window.addEventListener('scroll', updateStepStrip, { passive: true });
+window.addEventListener('load', updateStepStrip);
+
+// ============================================================
+// CHAT WITH BORI — streaming + engagement gate
+// ============================================================
+const history = [];
+const chatEl = document.getElementById('chat');
+const inputEl = document.getElementById('input');
+const sendEl = document.getElementById('send');
+const errEl = document.getElementById('err');
+const gateEl = document.getElementById('gate');
+
+function addMessage(role, text) {
+  const div = document.createElement('div');
+  div.className = `msg ${role}`;
+  const who = document.createElement('span');
+  who.className = 'msg-who';
+  who.textContent = role === 'bori' ? 'Bori' : UI[lang].you;
+  const txt = document.createElement('span');
+  txt.className = 'msg-text';
+  txt.textContent = text;
+  div.appendChild(who);
+  div.appendChild(txt);
+  chatEl.appendChild(div);
+  div.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  return div;
+}
+
+function showError(msg) { errEl.textContent = msg; errEl.classList.add('visible'); }
+function clearError() { errEl.textContent = ''; errEl.classList.remove('visible'); }
+
+function unlockGate() {
+  gateEl.classList.add('is-unlocked');
+}
+
+async function send() {
+  const text = inputEl.value.trim();
+  if (!text) return;
+  clearError();
+
+  // Engagement gate check — unlock once player sends a 20+ char message
+  if (text.length >= GATE_MIN_CHARS) {
+    unlockGate();
+  }
+
+  addMessage('player', text);
+  history.push({ role: 'user', content: text });
+  inputEl.value = '';
+  sendEl.disabled = true;
+
+  const boriNode = addMessage('bori', '');
+  const txtEl = boriNode.querySelector('.msg-text');
+  txtEl.classList.add('streaming');
+
+  let accumulated = '';
+  let gotAnyText = false;
+
+  try {
+    const res = await fetch('/api/episode', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ episode: EPISODE_ID, messages: history })
+    });
+
+    if (!res.ok || !res.body) {
+      txtEl.classList.remove('streaming');
+      boriNode.remove();
+      showError(res.status === 429 ? UI[lang].errRate : UI[lang].errGeneric);
+      sendEl.disabled = false;
+      return;
+    }
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const events = buffer.split('\n\n');
+      buffer = events.pop();
+
+      for (const evt of events) {
+        for (const line of evt.split('\n')) {
+          if (!line.startsWith('data:')) continue;
+          const data = line.slice(5).trim();
+          if (!data) continue;
+          try {
+            const parsed = JSON.parse(data);
+            if (parsed.type === 'text') {
+              accumulated += parsed.text;
+              txtEl.textContent = accumulated;
+              gotAnyText = true;
+              boriNode.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+          } catch {}
+        }
+      }
+    }
+  } catch {}
+
+  txtEl.classList.remove('streaming');
+
+  if (!gotAnyText) {
+    boriNode.remove();
+    showError(UI[lang].errGeneric);
+  } else {
+    history.push({ role: 'assistant', content: accumulated });
+  }
+
+  sendEl.disabled = false;
+  inputEl.focus();
+}
+
+sendEl.addEventListener('click', send);
+inputEl.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    send();
+  }
+});
+</script>
+
+</body>
+</html>
