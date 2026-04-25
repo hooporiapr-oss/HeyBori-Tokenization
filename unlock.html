@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Unlock Levels 2 & 3 — Get Ready Hoops</title>
+<meta name="description" content="You finished Level 1. Now go deeper. Unlock Levels 2 and 3 — twenty more episodes, twenty more questions you can't ignore." />
+<meta property="og:title" content="Unlock Levels 2 & 3 — Get Ready Hoops" />
+<meta property="og:description" content="Twenty more episodes. Twenty more questions. Lifetime access. One-time purchase." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://getreadyhoops.com/unlock.html" />
+<meta property="og:image" content="https://getreadyhoops.com/ready.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --black:#07070b;
+  --dark:#101018;
+  --panel:#171722;
+  --panel2:#202033;
+  --white:#f4f1e8;
+  --muted:#b9b4a8;
+  --green:#7cff6b;
+  --blue:#48c6ff;
+  --red:#ff4f6d;
+  --purple:#b66cff;
+  --gold:#e8b94a;
+
+  /* Unlock page uses BOTH gold (Level 1 origin) AND blue (Level 2 destination) */
+  --accent:#e8b94a;
+  --accent-soft:rgba(232,185,74,.13);
+  --accent-border:rgba(232,185,74,.25);
+  --accent-glow:rgba(232,185,74,.4);
+
+  --level2:#48c6ff;
+  --level2-soft:rgba(72,198,255,.13);
+  --level2-border:rgba(72,198,255,.28);
+  --level2-glow:rgba(72,198,255,.4);
+
+  --level3:#b66cff;
+  --level3-soft:rgba(182,108,255,.13);
+  --level3-border:rgba(182,108,255,.28);
+  --level3-glow:rgba(182,108,255,.4);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:'Barlow',sans-serif;
+  overflow-x:hidden;
+  line-height:1.55;
+}
+a{text-decoration:none;color:inherit}
+
+/* ---------------- NAV ---------------- */
+.nav{position:fixed;top:0;left:0;width:100%;z-index:50;padding:16px 7% 12px;background:rgba(7,7,11,.78);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);}
+.nav-top{display:flex;justify-content:space-between;align-items:center;gap:16px;}
+.nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;letter-spacing:2px;font-size:22px;color:var(--white);text-transform:uppercase;}
+.nav-logo span{color:var(--gold)}
+.lang-toggle{display:flex;align-items:center;gap:8px;color:var(--gold);font-size:13px;letter-spacing:1px;text-transform:uppercase;}
+.lang-btn{background:transparent;border:none;color:var(--muted);font-family:'Barlow',sans-serif;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;padding:4px 6px;font-size:13px;}
+.lang-btn.active,.lang-btn:hover{color:var(--gold)}
+.lang-sep{color:var(--muted);opacity:.4}
+
+/* ---------------- HERO ---------------- */
+.unlock-hero{position:relative;padding:140px 7% 60px;overflow:hidden;background:radial-gradient(circle at 20% 20%, rgba(232,185,74,.10), transparent 45%),radial-gradient(circle at 80% 80%, rgba(72,198,255,.08), transparent 45%),linear-gradient(180deg,#09090e,#07070b);}
+.unlock-hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);background-size:42px 42px;opacity:.25;pointer-events:none;}
+.unlock-hero-inner{position:relative;z-index:2;max-width:880px;margin:0 auto;text-align:center;}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border:1px solid var(--accent-border);color:var(--accent);border-radius:999px;text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:800;margin-bottom:24px;background:var(--accent-soft);}
+.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent-glow);}
+
+h1.unlock-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(46px,8.5vw,98px);line-height:.92;font-weight:900;text-transform:uppercase;margin-bottom:20px;text-shadow:0 4px 30px rgba(0,0,0,.55);}
+h1.unlock-title .gold{color:var(--accent)}
+h1.unlock-title .blue{color:var(--level2)}
+
+.unlock-sub{color:var(--muted);font-size:clamp(17px,2.2vw,21px);max-width:680px;line-height:1.5;margin:0 auto 40px;}
+
+.back-link{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;letter-spacing:1px;text-transform:uppercase;font-weight:700;margin-bottom:32px;transition:color .2s ease;}
+.back-link:hover{color:var(--accent)}
+.back-link::before{content:"←";display:inline-block;transition:transform .2s ease;}
+.back-link:hover::before{transform:translateX(-3px);}
+
+/* ---------------- LEVELS GRID ---------------- */
+section{padding:60px 7%;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-label{font-family:'Barlow Condensed',sans-serif;color:var(--muted);font-weight:900;letter-spacing:3px;font-size:13px;text-transform:uppercase;margin-bottom:14px;display:inline-flex;align-items:center;gap:10px;}
+.section-label::before{content:"";width:32px;height:2px;background:var(--muted);}
+h2.section-h{font-family:'Barlow Condensed',sans-serif;font-size:clamp(34px,5.5vw,56px);line-height:.95;font-weight:900;text-transform:uppercase;margin-bottom:36px;}
+
+.levels-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:24px;margin-bottom:32px;}
+@media(max-width:880px){.levels-grid{grid-template-columns:1fr;}}
+
+.level-card{background:linear-gradient(180deg,#151520,#0f0f17);border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:32px;display:flex;flex-direction:column;transition:.25s ease;position:relative;overflow:hidden;}
+.level-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg, transparent, currentColor, transparent);opacity:.4;}
+.level-card.lvl2{color:var(--level2);border-color:var(--level2-border);}
+.level-card.lvl3{color:var(--level3);border-color:var(--level3-border);}
+.level-card.lvl2:hover{box-shadow:0 18px 50px rgba(72,198,255,.12);transform:translateY(-3px);}
+.level-card.lvl3:hover{box-shadow:0 18px 50px rgba(182,108,255,.12);transform:translateY(-3px);}
+
+.level-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;letter-spacing:3px;font-size:13px;text-transform:uppercase;margin-bottom:10px;}
+.level-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;font-size:38px;line-height:.95;color:var(--white);margin-bottom:12px;}
+.level-title .accent{display:block;font-size:.55em;color:currentColor;letter-spacing:2px;margin-top:6px;}
+.level-tagline{color:var(--muted);font-size:15.5px;line-height:1.5;margin-bottom:24px;}
+
+.episode-list{flex:1;border-top:1px solid rgba(255,255,255,.06);padding-top:18px;margin-bottom:24px;}
+.ep-item{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.05);}
+.ep-item:last-child{border-bottom:none;}
+.ep-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:4px;}
+.ep-num-small{font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:1.5px;font-size:11px;text-transform:uppercase;color:currentColor;flex-shrink:0;}
+.ep-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;font-size:18px;color:var(--white);line-height:1.1;flex:1;text-align:right;}
+.ep-q{color:var(--muted);font-size:13.5px;line-height:1.4;font-style:italic;}
+.ep-q::before{content:"\201C";color:currentColor;margin-right:2px;font-style:normal;font-weight:700;}
+.ep-q::after{content:"\201D";color:currentColor;margin-left:1px;font-style:normal;font-weight:700;}
+
+.price-row{display:flex;align-items:baseline;gap:10px;margin-bottom:18px;border-top:1px solid rgba(255,255,255,.06);padding-top:22px;}
+.price{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:54px;line-height:.9;color:var(--white);}
+.price-meta{color:var(--muted);font-size:13px;line-height:1.4;}
+.price-meta strong{display:block;color:currentColor;font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:12px;margin-bottom:2px;}
+
+.buy-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:18px 24px;border-radius:14px;font-family:'Barlow',sans-serif;font-weight:800;font-size:15px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;border:none;transition:.2s ease;color:#0a0a10;}
+.buy-btn.lvl2{background:var(--level2);}
+.buy-btn.lvl3{background:var(--level3);}
+.buy-btn:hover{transform:translateY(-2px);}
+.buy-btn.lvl2:hover{box-shadow:0 14px 30px rgba(72,198,255,.32);}
+.buy-btn.lvl3:hover{box-shadow:0 14px 30px rgba(182,108,255,.32);}
+.buy-btn:disabled{opacity:.55;cursor:wait;}
+.buy-btn::after{content:"→";font-size:18px;transition:transform .2s ease;}
+.buy-btn:hover::after{transform:translateX(4px);}
+
+/* ---------------- BUNDLE STRIP ---------------- */
+.bundle{margin-top:28px;background:linear-gradient(135deg, rgba(72,198,255,.10), rgba(182,108,255,.10));border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:32px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;position:relative;overflow:hidden;}
+.bundle::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg, var(--level2), var(--level3));}
+@media(max-width:680px){.bundle{grid-template-columns:1fr;text-align:center;}}
+
+.bundle-tag{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:900;letter-spacing:3px;font-size:11px;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:linear-gradient(90deg, var(--level2), var(--level3));color:#0a0a10;margin-bottom:10px;}
+.bundle-h{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;font-size:36px;line-height:1;margin-bottom:8px;}
+.bundle-h span{background:linear-gradient(90deg, var(--level2), var(--level3));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.bundle-meta{color:var(--muted);font-size:15px;line-height:1.5;}
+.bundle-meta strong{color:var(--white);}
+.bundle-buy{display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
+@media(max-width:680px){.bundle-buy{align-items:center;}}
+.bundle-price-row{display:flex;align-items:baseline;gap:8px;}
+.bundle-price-old{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;color:var(--muted);text-decoration:line-through;}
+.bundle-price{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:48px;line-height:.9;color:var(--white);}
+.bundle-save{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--green);}
+.buy-btn.bundle-btn{background:linear-gradient(90deg, var(--level2), var(--level3));color:#0a0a10;min-width:240px;}
+.buy-btn.bundle-btn:hover{box-shadow:0 14px 30px rgba(124,108,255,.32);}
+
+/* ---------------- TRUST STRIP ---------------- */
+.trust-strip{padding:40px 7%;border-top:1px solid rgba(255,255,255,.06);background:#08080d;}
+.trust-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;text-align:center;}
+.trust-item h4{font-family:'Barlow Condensed',sans-serif;color:var(--gold);font-weight:900;letter-spacing:2px;font-size:13px;text-transform:uppercase;margin-bottom:8px;}
+.trust-item p{color:var(--muted);font-size:14px;line-height:1.5;}
+
+/* ---------------- ACCESS LINK ---------------- */
+.access-strip{padding:40px 7%;text-align:center;border-top:1px solid rgba(255,255,255,.06);}
+.access-strip p{color:var(--muted);font-size:15px;}
+.access-strip a{color:var(--gold);font-weight:700;border-bottom:1px solid var(--accent-border);}
+.access-strip a:hover{color:var(--white);border-bottom-color:var(--accent);}
+
+/* ---------------- DISCLAIMER ---------------- */
+.disclaimer{padding:30px 7% 40px;text-align:center;color:#858585;font-size:12.5px;background:#050508;border-top:1px solid rgba(255,255,255,.05);line-height:1.6;}
+
+/* ---------------- ERROR BANNER ---------------- */
+.err-banner{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;padding:12px 20px;border-radius:12px;font-weight:700;font-size:14px;letter-spacing:.5px;display:none;z-index:100;box-shadow:0 10px 30px rgba(0,0,0,.4);}
+.err-banner.visible{display:block;}
+
+@media(max-width:780px){
+  section{padding:48px 6%;}
+  .unlock-hero{padding:120px 6% 50px;}
+  .level-card{padding:24px;}
+  .price{font-size:44px;}
+  .bundle{padding:24px;}
+}
+</style>
+</head>
+
+<body>
+
+<nav class="nav">
+  <div class="nav-top">
+    <a href="/" class="nav-logo">Get Ready <span>Hoops</span></a>
+    <div class="lang-toggle">
+      <button type="button" class="lang-btn active" data-lang="en">EN</button>
+      <span class="lang-sep">|</span>
+      <button type="button" class="lang-btn" data-lang="es">ES</button>
+    </div>
+  </div>
+</nav>
+
+<header class="unlock-hero">
+  <div class="unlock-hero-inner">
+    <a href="/" class="back-link" data-en="Back To Series" data-es="Volver A La Serie">Back To Series</a>
+
+    <div class="eyebrow">
+      <span class="dot"></span>
+      <span data-en="Level 1 Was Awareness" data-es="Nivel 1 Fue Conciencia">Level 1 Was Awareness</span>
+    </div>
+
+    <h1 class="unlock-title" data-en="Now Go <span class='blue'>Deeper</span>." data-es="Ahora Ve Más <span class='blue'>Profundo</span>.">Now Go <span class="blue">Deeper</span>.</h1>
+
+    <p class="unlock-sub" data-en="Twenty more episodes. Twenty more questions you can't ignore. Lifetime access. One-time purchase." data-es="Veinte episodios más. Veinte preguntas más que no puedes ignorar. Acceso de por vida. Compra única.">
+      Twenty more episodes. Twenty more questions you can't ignore. Lifetime access. One-time purchase.
+    </p>
+  </div>
+</header>
+
+<section>
+  <div class="section-inner">
+
+    <div class="levels-grid">
+
+      <!-- LEVEL 2 -->
+      <div class="level-card lvl2">
+        <div class="level-num" data-en="Level 2" data-es="Nivel 2">Level 2</div>
+        <div class="level-title">
+          <span data-en="Separation" data-es="Separación">Separation</span>
+          <span class="accent" data-en="Episodes 011 — 020" data-es="Episodios 011 — 020">Episodes 011 — 020</span>
+        </div>
+        <p class="level-tagline" data-en="Helps players understand role, consistency, coachability, time, weaknesses, and readiness — the things that make one player stand apart from the rest." data-es="Ayuda al jugador a entender su rol, consistencia, adaptabilidad, tiempo, debilidades y preparación — lo que hace que un jugador se separe del resto.">
+          Helps players understand role, consistency, coachability, time, weaknesses, and readiness — the things that make one player stand apart from the rest.
+        </p>
+
+        <div class="episode-list">
+          <!-- L2 episodes -->
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">011</span><span class="ep-name" data-en="Your Role" data-es="Tu Rol">Your Role</span></div>
+            <div class="ep-q" data-en="Do you know your role on this team?" data-es="¿Sabes cuál es tu rol en este equipo?">Do you know your role on this team?</div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">012</span><span class="ep-name" data-en="Consistency" data-es="Consistencia">Consistency</span></div>
+            <div class="ep-q" data-en="Can people count on you?" data-es="¿La gente puede contar contigo?">Can people count on you?</div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">013</span><span class="ep-name" data-en="Coachable" data-es="Coachable">Coachable</span></div>
+            <div class="ep-q" data-en="How do you take feedback?" data-es="¿Cómo recibes la crítica?">How do you take feedback?</div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">014</span><span class="ep-name" data-en="Your Time" data-es="Tu Tiempo">Your Time</span></div>
+            <div class="ep-q" data-en="Where does your time really go?" data-es="¿A dónde se va realmente tu tiempo?">Where does your time really go?</div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">015</span><span class="ep-name" data-en="Weaknesses" data-es="Debilidades">Weaknesses</span></div>
+            <div class="ep-q" data-en="What do you avoid working on?" data-es="¿Qué evitas trabajar?">What do you avoid working on?</div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">016</span><span class="ep-name" data-en="Reputation" data-es="Reputación">Reputation</span></div>
+            <div class="ep-q" data-en="What do people say when you're not in the room?" data-es="¿Qué dicen de ti cuando no estás?">What do people say when you're not in the room?</div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">017</span><span class="ep-name" data-en="Body Language" data-es="Lenguaje Corporal">Body Language</span></div>
+            <div class="ep-q" data-en="What does your body say before you speak?" data-es="¿Qué dice tu cuerpo antes de hablar?">What does your body say before you speak?</div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">018</span><span class="ep-name" data-en="Reading The Room" data-es="Leer La Sala">Reading The Room</span></div>
+            <div class="ep-q" data-en="Do you see what's happening around you?" data-es="¿Ves lo que pasa a tu alrededor?">Do you see what's happening around you?</div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">019</span><span class="ep-name" data-en="The Bench" data-es="El Banco">The Bench</span></div>
+            <div class="ep-q" data-en="Who are you when you're not playing?" data-es="¿Quién eres cuando no estás jugando?">Who are you when you're not playing?</div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">020</span><span class="ep-name" data-en="Ready" data-es="Listo">Ready</span></div>
+            <div class="ep-q" data-en="Are you ready when your name is called?" data-es="¿Estás listo cuando llaman tu nombre?">Are you ready when your name is called?</div>
+          </div>
+        </div>
+
+        <div class="price-row">
+          <div class="price">$29</div>
+          <div class="price-meta">
+            <strong data-en="One-Time" data-es="Pago Único">One-Time</strong>
+            <span data-en="Lifetime access" data-es="Acceso de por vida">Lifetime access</span>
+          </div>
+        </div>
+
+        <button type="button" class="buy-btn lvl2" data-tier="lvl2" data-en="Unlock Level 2" data-es="Desbloquear Nivel 2">Unlock Level 2</button>
+      </div>
+
+      <!-- LEVEL 3 -->
+      <div class="level-card lvl3">
+        <div class="level-num" data-en="Level 3" data-es="Nivel 3">Level 3</div>
+        <div class="level-title">
+          <span data-en="Mastery" data-es="Maestría">Mastery</span>
+          <span class="accent" data-en="Episodes 021 — 030" data-es="Episodios 021 — 030">Episodes 021 — 030</span>
+        </div>
+        <p class="level-tagline" data-en="Builds longevity, pressure control, emotional control, self-awareness, failure response, and purpose — what carries a player through a long career." data-es="Construye longevidad, control bajo presión, control emocional, auto-conciencia, respuesta ante el fracaso y propósito — lo que sostiene al jugador a través de una carrera larga.">
+          Builds longevity, pressure control, emotional control, self-awareness, failure response, and purpose — what carries a player through a long career.
+        </p>
+
+        <div class="episode-list">
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">021</span><span class="ep-name" data-en="Longevity" data-es="Longevidad">Longevity</span></div>
+            <div class="ep-q" data-en="Are you built for the long road?" data-es="¿Estás construido para el camino largo?">Are you built for the long road?</div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">022</span><span class="ep-name" data-en="Pressure" data-es="Presión">Pressure</span></div>
+            <div class="ep-q" data-en="What happens to you when it gets heavy?" data-es="¿Qué te pasa cuando se pone pesado?">What happens to you when it gets heavy?</div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">023</span><span class="ep-name" data-en="Emotional Control" data-es="Control Emocional">Emotional Control</span></div>
+            <div class="ep-q" data-en="What sets you off?" data-es="¿Qué te saca de quicio?">What sets you off?</div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">024</span><span class="ep-name" data-en="Self-Awareness" data-es="Auto-Conciencia">Self-Awareness</span></div>
+            <div class="ep-q" data-en="Who are you really?" data-es="¿Quién eres realmente?">Who are you really?</div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">025</span><span class="ep-name" data-en="Failure" data-es="Fracaso">Failure</span></div>
+            <div class="ep-q" data-en="What do you do when it doesn't work?" data-es="¿Qué haces cuando no funciona?">What do you do when it doesn't work?</div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">026</span><span class="ep-name" data-en="The Voice" data-es="La Voz">The Voice</span></div>
+            <div class="ep-q" data-en="What does the voice in your head say?" data-es="¿Qué dice la voz en tu cabeza?">What does the voice in your head say?</div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">027</span><span class="ep-name" data-en="Lead Yourself" data-es="Lidérate">Lead Yourself</span></div>
+            <div class="ep-q" data-en="Can you lead you?" data-es="¿Puedes liderarte a ti mismo?">Can you lead you?</div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">028</span><span class="ep-name" data-en="The End" data-es="El Final">The End</span></div>
+            <div class="ep-q" data-en="What happens when basketball ends?" data-es="¿Qué pasa cuando el baloncesto termina?">What happens when basketball ends?</div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">029</span><span class="ep-name" data-en="Legacy" data-es="Legado">Legacy</span></div>
+            <div class="ep-q" data-en="What do you leave behind?" data-es="¿Qué dejas atrás?">What do you leave behind?</div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-head"><span class="ep-num-small">030</span><span class="ep-name" data-en="Purpose" data-es="Propósito">Purpose</span></div>
+            <div class="ep-q" data-en="Why do you really play?" data-es="¿Por qué realmente juegas?">Why do you really play?</div>
+          </div>
+        </div>
+
+        <div class="price-row">
+          <div class="price">$39</div>
+          <div class="price-meta">
+            <strong data-en="One-Time" data-es="Pago Único">One-Time</strong>
+            <span data-en="Lifetime access" data-es="Acceso de por vida">Lifetime access</span>
+          </div>
+        </div>
+
+        <button type="button" class="buy-btn lvl3" data-tier="lvl3" data-en="Unlock Level 3" data-es="Desbloquear Nivel 3">Unlock Level 3</button>
+      </div>
+
+    </div>
+
+    <!-- BUNDLE -->
+    <div class="bundle">
+      <div>
+        <div class="bundle-tag" data-en="Best Value" data-es="Mejor Precio">Best Value</div>
+        <h2 class="bundle-h" data-en="Both Levels. <span>Save $19.</span>" data-es="Ambos Niveles. <span>Ahorra $19.</span>">Both Levels. <span>Save $19.</span></h2>
+        <p class="bundle-meta" data-en="<strong>Twenty episodes total.</strong> Levels 2 and 3 unlocked at once. Same lifetime access. One-time purchase." data-es="<strong>Veinte episodios totales.</strong> Niveles 2 y 3 desbloqueados al instante. Mismo acceso de por vida. Compra única.">
+          <strong>Twenty episodes total.</strong> Levels 2 and 3 unlocked at once. Same lifetime access. One-time purchase.
+        </p>
+      </div>
+      <div class="bundle-buy">
+        <div class="bundle-price-row">
+          <div class="bundle-price-old">$68</div>
+          <div class="bundle-price">$49</div>
+        </div>
+        <div class="bundle-save" data-en="You Save $19" data-es="Ahorras $19">You Save $19</div>
+        <button type="button" class="buy-btn bundle-btn" data-tier="bundle" data-en="Unlock Both Levels" data-es="Desbloquear Ambos Niveles">Unlock Both Levels</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <h4 data-en="Lifetime Access" data-es="Acceso De Por Vida">Lifetime Access</h4>
+      <p data-en="Pay once. Access forever. No subscriptions. No renewals. The episodes are yours." data-es="Paga una vez. Accede para siempre. Sin suscripciones. Sin renovaciones. Los episodios son tuyos.">Pay once. Access forever. No subscriptions. No renewals. The episodes are yours.</p>
+    </div>
+    <div class="trust-item">
+      <h4 data-en="Bilingual EN/ES" data-es="Bilingüe EN/ES">Bilingual EN/ES</h4>
+      <p data-en="Every episode in English and Spanish. Bori speaks both. The player picks the language." data-es="Cada episodio en inglés y español. Bori habla ambos. El jugador elige el idioma.">Every episode in English and Spanish. Bori speaks both. The player picks the language.</p>
+    </div>
+    <div class="trust-item">
+      <h4 data-en="Secure Checkout" data-es="Pago Seguro">Secure Checkout</h4>
+      <p data-en="Payment processed by Stripe. We never see card numbers. Cancel or refund any time." data-es="Pago procesado por Stripe. Nunca vemos los números de tarjeta. Cancela o reembolsa en cualquier momento.">Payment processed by Stripe. We never see card numbers. Cancel or refund any time.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ACCESS LINK -->
+<div class="access-strip">
+  <p data-en="Already purchased? <a href='/access.html'>Recover your access link</a>" data-es="¿Ya compraste? <a href='/access.html'>Recupera tu enlace de acceso</a>">
+    Already purchased? <a href="/access.html">Recover your access link</a>
+  </p>
+</div>
+
+<footer class="disclaimer">
+  <div data-en="Get Ready Hoops provides educational content only. We do not provide legal, financial, contract, representation, or recruiting advice. For your specific situation, work with a sports attorney, CPA, or certified advisor." data-es="Get Ready Hoops ofrece contenido educativo solamente. No damos consejos legales, financieros, de contratos, representación o reclutamiento. Para tu situación específica, trabaja con un abogado deportivo, CPA o asesor certificado.">
+    Get Ready Hoops provides educational content only. We do not provide legal, financial, contract, representation, or recruiting advice. For your specific situation, work with a sports attorney, CPA, or certified advisor.
+  </div>
+  <div style="margin-top:10px;opacity:.6">© 2026 Get Ready Hoops</div>
+</footer>
+
+<div class="err-banner" id="err"></div>
+
+<script>
+// ============================================================
+// LANGUAGE
+// ============================================================
+const langButtons = document.querySelectorAll('.lang-btn');
+const translatable = document.querySelectorAll('[data-en][data-es]');
+
+const UI = {
+  en: { errGeneric: 'Something went wrong. Please try again.', loading: 'Loading…' },
+  es: { errGeneric: 'Algo salió mal. Por favor intenta de nuevo.', loading: 'Cargando…' }
+};
+
+let lang = 'en';
+
+function setLanguage(l) {
+  lang = l;
+  translatable.forEach(el => {
+    const text = el.getAttribute('data-' + l);
+    if (text) el.innerHTML = text;
+  });
+  langButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.lang === l));
+  document.documentElement.lang = l;
+  try { localStorage.setItem('grhLang', l); } catch (e) {}
+}
+
+langButtons.forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.lang)));
+
+let savedLang = 'en';
+try { savedLang = localStorage.getItem('grhLang') || 'en'; } catch (e) {}
+setLanguage(savedLang);
+
+// ============================================================
+// CHECKOUT
+// ============================================================
+const errEl = document.getElementById('err');
+function showError(msg) {
+  errEl.textContent = msg;
+  errEl.classList.add('visible');
+  setTimeout(() => errEl.classList.remove('visible'), 5000);
+}
+
+async function startCheckout(tier, button) {
+  const originalText = button.textContent;
+  button.disabled = true;
+  button.textContent = UI[lang].loading;
+
+  try {
+    const res = await fetch('/api/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tier, lang })
+    });
+
+    if (!res.ok) {
+      showError(UI[lang].errGeneric);
+      button.disabled = false;
+      button.textContent = originalText;
+      return;
+    }
+
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      showError(UI[lang].errGeneric);
+      button.disabled = false;
+      button.textContent = originalText;
+    }
+  } catch (e) {
+    showError(UI[lang].errGeneric);
+    button.disabled = false;
+    button.textContent = originalText;
+  }
+}
+
+document.querySelectorAll('.buy-btn').forEach(btn => {
+  btn.addEventListener('click', () => startCheckout(btn.dataset.tier, btn));
+});
+</script>
+
+</body>
+</html>
