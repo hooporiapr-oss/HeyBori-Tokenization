@@ -1,6 +1,10 @@
 // /api/episode-001.js
-// Vercel serverless function. Proxies player messages to Anthropic and returns Bori's reply.
+// Vercel Edge function. Streams Bori's reply token-by-token via Server-Sent Events.
 // Requires env var: ANTHROPIC_API_KEY
+
+export const config = {
+  runtime: 'edge'
+};
 
 const SYSTEM_PROMPT = `You are Bori, the AI mentor for Get Ready Hoops — a mental development system for young basketball players.
 
@@ -34,35 +38,49 @@ NEVER:
 
 You are Bori. Begin.`;
 
-export default async function handler(req, res) {
-  // Allow CORS from same origin (Vercel handles this, but explicit for safety)
-  res.setHeader('Content-Type', 'application/json');
-
+export default async function handler(req) {
   if (req.method !== 'POST') {
-    res.status(405).json({ error: 'Method not allowed' });
-    return;
+    return new Response(JSON.stringify({ error: 'Method not allowed' }), {
+      status: 405,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 
   if (!process.env.ANTHROPIC_API_KEY) {
-    res.status(500).json({ error: 'Server not configured' });
-    return;
+    return new Response(JSON.stringify({ error: 'Server not configured' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 
+  let body;
   try {
-    const { messages } = req.body || {};
+    body = await req.json();
+  } catch {
+    return new Response(JSON.stringify({ error: 'Invalid JSON' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
 
-    if (!Array.isArray(messages) || messages.length === 0) {
-      res.status(400).json({ error: 'messages array required' });
-      return;
-    }
+  const { messages } = body || {};
+  if (!Array.isArray(messages) || messages.length === 0) {
+    return new Response(JSON.stringify({ error: 'messages array required' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
 
-    // Defensive: cap conversation length to keep costs predictable on a free preview
-    const trimmed = messages.slice(-20).map(m => ({
-      role: m.role === 'assistant' ? 'assistant' : 'user',
-      content: String(m.content || '').slice(0, 2000)
-    }));
+  // Cap conversation length and message size to keep costs predictable
+  const trimmed = messages.slice(-20).map(m => ({
+    role: m.role === 'assistant' ? 'assistant' : 'user',
+    content: String(m.content || '').slice(0, 2000)
+  }));
 
-    const apiResponse = await fetch('https://api.anthropic.com/v1/messages', {
+  // Call Anthropic with streaming enabled
+  let upstream;
+  try {
+    upstream = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -72,28 +90,92 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         model: 'claude-sonnet-4-5',
         max_tokens: 400,
+        stream: true,
         system: SYSTEM_PROMPT,
         messages: trimmed
       })
     });
-
-    if (!apiResponse.ok) {
-      const errText = await apiResponse.text();
-      console.error('Anthropic API error:', apiResponse.status, errText);
-      res.status(502).json({ error: 'Upstream error' });
-      return;
-    }
-
-    const data = await apiResponse.json();
-    const reply = (data.content || [])
-      .filter(b => b.type === 'text')
-      .map(b => b.text)
-      .join('\n')
-      .trim();
-
-    res.status(200).json({ reply });
-  } catch (err) {
-    console.error('Handler error:', err);
-    res.status(500).json({ error: 'Server error' });
+  } catch {
+    return new Response(JSON.stringify({ error: 'Upstream connection failed' }), {
+      status: 502,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
+
+  if (!upstream.ok || !upstream.body) {
+    return new Response(JSON.stringify({ error: 'Upstream error' }), {
+      status: 502,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+
+  // Transform Anthropic's SSE into simpler {type, text} events for the browser.
+  // Anthropic emits content_block_delta with {delta: {type:"text_delta", text:"..."}}.
+  // We forward only text deltas, plus a final "done" event.
+  const encoder = new TextEncoder();
+  const decoder = new TextDecoder();
+
+  const stream = new ReadableStream({
+    async start(controller) {
+      const reader = upstream.body.getReader();
+      let buffer = '';
+
+      const sendEvent = (obj) => {
+        controller.enqueue(encoder.encode(`data: ${JSON.stringify(obj)}\n\n`));
+      };
+
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          buffer += decoder.decode(value, { stream: true });
+
+          // SSE events separated by blank lines
+          const events = buffer.split('\n\n');
+          buffer = events.pop(); // last chunk may be incomplete
+
+          for (const evt of events) {
+            for (const line of evt.split('\n')) {
+              if (!line.startsWith('data:')) continue;
+              const data = line.slice(5).trim();
+              if (!data) continue;
+
+              try {
+                const parsed = JSON.parse(data);
+                if (
+                  parsed.type === 'content_block_delta' &&
+                  parsed.delta &&
+                  parsed.delta.type === 'text_delta' &&
+                  typeof parsed.delta.text === 'string'
+                ) {
+                  sendEvent({ type: 'text', text: parsed.delta.text });
+                } else if (parsed.type === 'message_stop') {
+                  sendEvent({ type: 'done' });
+                } else if (parsed.type === 'error') {
+                  sendEvent({ type: 'error', message: 'upstream' });
+                }
+              } catch {
+                // ignore malformed event
+              }
+            }
+          }
+        }
+        sendEvent({ type: 'done' });
+      } catch {
+        sendEvent({ type: 'error', message: 'stream' });
+      } finally {
+        controller.close();
+      }
+    }
+  });
+
+  return new Response(stream, {
+    headers: {
+      'Content-Type': 'text/event-stream; charset=utf-8',
+      'Cache-Control': 'no-cache, no-transform',
+      'Connection': 'keep-alive',
+      'X-Accel-Buffering': 'no'
+    }
+  });
 }
